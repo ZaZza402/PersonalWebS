@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Page Title and Description -->
+    <title>Contatti | AxiomWeb</title>
+    <meta name="description" content="Hai un'idea o un progetto? Entriamo in contatto. Richiedi una proposta gratuita o utilizza uno dei nostri canali per iniziare una conversazione.">
+
+    <!-- Stylesheets, Fonts, Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Favicon Links -->
+    <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+    <link rel="manifest" href="site.webmanifest" />
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QN6GNKDE5C" type="text/plain" data-cookie-category="analytics"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-QN6GNKDE5C');
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Contatti | AxiomWeb",
+  "description": "Entra in contatto con AxiomWeb. Utilizza i nostri canali diretti come WhatsApp ed Email, o compila il modulo per richiederci una proposta gratuita.",
+  "url": "https://www.axiomweb.eu/contact.html",
+  "mainContentOfPage": {
+    "@type": "WebPageElement",
+    "cssSelector": ".contact-form-section, .contact-channels-section"
+  }
+}
+</script>
+</head>
+<body>
+
+    <!-- Reusable Navigation, Overlay, and Header -->
+    <nav class="off-canvas-menu">
+        <button class="menu-close" aria-label="Chiudi menu di navigazione"><i class='bx bx-x'></i></button>
+        <a href="contact.html" class="btn btn-primary menu-cta">Richiedi una Proposta</a>
+        <ul class="nav-links">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="services.html" class="nav-link">Servizi</a></li>
+            <li><a href="showcase.html" class="nav-link">Portfolio</a></li>
+            <li class="has-submenu">
+                <a href="#" class="nav-link">Approfondimenti <i class='bx bxs-chevron-down'></i></a>
+                <ul class="submenu">
+                    <li><a href="ai-guides.html">Guide AI</a></li>
+                    <li><a href="case-studies.html">Casi di Successo</a></li>
+                </ul>
+            </li>
+            <li><a href="contact.html" class="nav-link">Contatti</a></li>
+        </ul>
+        <div class="menu-logo-placeholder">
+            <img src="images/aw_logo.webp" alt="Logo AxiomWeb">
+        </div>
+    </nav>
+    <div class="overlay"></div>
+    <header class="main-header">
+        <a href="index.html" class="logo-link"><div class="logo">AxiomWeb</div></a>
+        <button class="menu-toggle" aria-label="Apri menu di navigazione">
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </button>
+    </header>
+
+    <!-- Main Content Area -->
+    <main id="main-content">
+
+        <!-- Page Header -->
+        <header class="page-header">
+            <div class="container">
+                <h1>Entriamo in Contatto</h1>
+                <p class="page-subtitle">Hai un'idea o un progetto in mente? Raccontamelo. Sono qui per aiutarti a trasformarlo in un caso di successo.</p>
+            </div>
+        </header>
+
+        <!-- Preferred Channels Section -->
+        <section class="contact-channels-section">
+            <div class="container">
+                <h2>Canali Diretti</h2>
+                <div class="channels-grid">
+                    <!-- WhatsApp Card -->
+                    <a href="https://wa.me/390694428189" target="_blank" class="channel-card" data-aos="fade-up">
+                        <i class='bx bxl-whatsapp'></i>
+                        <h3>WhatsApp</h3>
+                        <p>Il modo più rapido e diretto per una conversazione immediata e per discutere le tue idee al volo.</p>
+                        <span>Chatta Ora</span>
+                    </a>
+                    <!-- Email Card -->
+                    <a href="mailto:axiomwebz@gmail.com" class="channel-card" data-aos="fade-up" data-aos-delay="200">
+                        <i class='bx bxs-paper-plane'></i>
+                        <h3>Email</h3>
+                        <p>Perfetto per richieste dettagliate, per inviare documenti o se preferisci avere tutto per iscritto.</p>
+                        <span>Invia un'Email</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Contact Form Section -->
+        <section class="contact-form-section">
+            <div class="container">
+                <h2>Oppure, Lascia un Messaggio</h2>
+                 <!-- IMPORTANT: Replace "your-email-here" with your actual Formspree endpoint -->
+                <form action="https://formspree.io/f/your-email-here" method="POST" class="contact-form" data-aos="zoom-in-up">
+                    <div class="form-group">
+                        <label for="name">Il Tuo Nome</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">La Tua Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Il Tuo Messaggio</label>
+                        <textarea id="message" name="message" rows="6" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Invia il Messaggio</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- What to Expect Section -->
+        <section class="what-to-expect-section">
+            <div class="container">
+                <h2>Cosa Aspettarsi Dopo</h2>
+                <div class="timeline">
+                    <div class="timeline-item" data-aos="fade-right">
+                        <div class="timeline-icon"><i class='bx bx-message-square-dots'></i></div>
+                        <div class="timeline-content">
+                            <h3>1. Primo Contatto</h3>
+                            <p>Analizzeremo insieme la tua richiesta per capire a fondo le tue necessità e gli obiettivi del progetto.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-aos="fade-left">
+                        <div class="timeline-icon"><i class='bx bx-file'></i></div>
+                        <div class="timeline-content">
+                            <h3>2. Proposta su Misura</h3>
+                            <p>Riceverai una proposta dettagliata, trasparente e senza impegno, costruita specificamente per te.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-aos="fade-right">
+                        <div class="timeline-icon"><i class='bx bxs-rocket'></i></div>
+                        <div class="timeline-content">
+                            <h3>3. Inizio del Progetto</h3>
+                            <p>Una volta approvata la proposta, daremo il via alla creazione del tuo nuovo strumento digitale.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Cookie Consent Banner -->
+<div id="cookie-consent-banner" class="cookie-consent-banner" role="dialog" aria-labelledby="cookie-consent-title" aria-describedby="cookie-consent-desc" aria-hidden="true">
+    <div class="container">
+        <div class="cookie-banner-content">
+            <div class="cookie-text">
+                <h3 id="cookie-consent-title">Questo sito utilizza i cookie</h3>
+                <p id="cookie-consent-desc">Utilizziamo i cookie per analizzare il traffico e migliorare la tua esperienza. Non memorizziamo dati personali. <a href="privacy-policy.html">Leggi la nostra Privacy Policy</a>.</p>
+            </div>
+            <div class="cookie-buttons">
+                <button id="cookie-decline-btn" class="btn btn-secondary">Rifiuta</button>
+                <button id="cookie-accept-btn" class="btn btn-primary">Accetta</button>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <p class="footer-quote"><em>"Il design non è solo come appare e come si sente. Il design è come funziona."</em></p>
+            <div class="footer-links">
+                <h4>Link Veloci</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Servizi</a></li>
+                    <li><a href="contact.html">Contatti</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <a href="https://www.facebook.com/AxiomWeb/" aria-label="Visita la nostra pagina Facebook" target="_blank"><i class='bx bxl-facebook-square'></i></a>
+                <a href="#" aria-label="Visita il nostro profilo LinkedIn"><i class='bx bxl-linkedin-square'></i></a>
+                <a href="#" aria-label="Visita la nostra pagina Instagram"><i class='bx bxl-instagram-alt'></i></a>
+            </div>
+            <div class="footer-copyright"></div>
+        </div>
+    </footer>
+    <a href="https://wa.me/390694428189" class="fab" aria-label="Chatta su WhatsApp" target="_blank"><i class='bx bxl-whatsapp'></i></a>
+    
+    <!-- All necessary scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js" defer></script>
+</body>
+</html>
