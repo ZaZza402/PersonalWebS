@@ -1,3 +1,18 @@
-# https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Allow: /
+
+# Sitemap
+Sitemap: https://www.axiomweb.eu/sitemap.xml
+
+# Disallow private directories
+Disallow: /static/
+Disallow: /.env
+
+# Allow important pages
+Allow: /
+Allow: /services
+Allow: /showcase
+Allow: /blog
+Allow: /snippets
+Allow: /contact
+Allow: /privacy-policy

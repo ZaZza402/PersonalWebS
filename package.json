@@ -22,10 +22,12 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
-    "postbuild": "echo www.axiomweb.eu > build/CNAME && copyfiles -f build/index.html build/404.html",
+    "build": "react-scripts build && npm run postbuild",
+    "postbuild": "echo www.axiomweb.eu > build/CNAME",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "npm run build && npm run gh-pages-deploy",
+    "gh-pages-deploy": "echo Deployment files ready in build/ directory"
   },
   "eslintConfig": {
     "extends": [

@@ -15,6 +15,16 @@ function App() {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
   
+  // GitHub Pages SPA compatibility - handles redirect from 404.html
+  useEffect(() => {
+    // This runs once on app initialization to handle GitHub Pages routing
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('p')) {
+      const route = urlParams.get('p');
+      window.history.replaceState(null, null, route + window.location.hash);
+    }
+  }, []);
+  
   useEffect(() => {
     handleCloseMenu();
   }, [location]);
