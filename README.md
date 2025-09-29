@@ -1,70 +1,177 @@
-# Getting Started with Create React App
+# AxiomWeb - Personal Website & Portfolio
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern, responsive website built with React featuring a comprehensive code snippets collection, blog system, and portfolio showcase.
 
-## Available Scripts
+## 🚀 Features
 
-In the project directory, you can run:
+- **Modern Design**: Glassmorphism effects, animations, and responsive layouts
+- **Code Snippets Gallery**: 8+ comprehensive code examples with live previews
+- **Blog System**: Ready for Strapi CMS integration with mock content fallback  
+- **Portfolio Showcase**: Interactive project displays with advanced animations
+- **SEO Optimized**: Modern routing structure (`/blog`, `/snippets`)
+- **Mobile First**: Fully responsive design with touch-friendly interactions
+- **Performance**: Optimized images, lazy loading, and efficient animations
 
-### `npm start`
+## 🛠️ Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Frontend**: React 18.2.0, React Router 6
+- **Styling**: CSS3 with CSS Grid, Flexbox, Custom Properties
+- **Animations**: Framer Motion, CSS Animations
+- **Icons**: Boxicons
+- **CMS Ready**: Strapi integration prepared
+- **Deployment Ready**: Vercel/Netlify compatible
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 📦 Quick Start
 
-### `npm test`
+### Installation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+# Clone the repository
+git clone https://github.com/ZaZza402/PersonalWebS.git
 
-### `npm run build`
+# Navigate to project directory
+cd PersonalWebS
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Install dependencies
+npm install
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Start development server
+npm start
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Available Scripts
 
-### `npm run eject`
+- `npm start` - Runs development server on http://localhost:3000
+- `npm run build` - Creates production build in `/build` folder
+- `npm test` - Runs test suite
+- `npm run eject` - Ejects from Create React App (one-way operation)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 🗂️ Project Structure
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+src/
+├── components/          # Reusable UI components
+│   ├── AnimatedLogo.js
+│   ├── SnippetCard.js
+│   ├── SnippetPreviewModal.js
+│   └── ...
+├── pages/              # Main page components
+│   ├── HomePage.js
+│   ├── BlogsPage.js    # Blog listing with Strapi integration
+│   ├── SnippetsPage.js # Code snippets gallery
+│   └── ...
+├── services/           # External API services
+│   └── strapiAPI.js    # Strapi CMS integration
+└── App.js              # Main routing configuration
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 🔗 Routing Structure
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- `/` - Home page with hero section and services
+- `/services` - Services overview
+- `/showcase` - Portfolio projects
+- `/blog` - Blog articles (integrates with Strapi)
+- `/blog/:slug` - Individual article pages
+- `/snippets` - Code snippets gallery
+- `/contact` - Contact form and information
+- `/privacy-policy` - Privacy policy
 
-## Learn More
+**Legacy Routes**: `/ai-guides` and `/case-studies` redirect for backwards compatibility.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 🎨 Code Snippets Collection
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+The website features 8 comprehensive, production-ready code snippets:
 
-### Code Splitting
+1. **🎨 Animated Card Hover Effect** - Modern CSS animations
+2. **⚛️ React useLocalStorage Hook** - Custom React hook with TypeScript
+3. **💎 Glassmorphism Card** - Modern glass effect design
+4. **✅ JavaScript Form Validator** - Complete validation system
+5. **⚡ CSS Loading Spinners** - Collection of 6 animated spinners
+6. **🎯 Vue 3 Composition API Counter** - Interactive Vue component
+7. **🔧 TypeScript Interface Generator** - JSON to TS interface utility
+8. **🎛️ CSS Grid Auto-Layout System** - Responsive grid framework
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Each snippet includes:
+- Complete HTML, CSS, and JavaScript code
+- Mobile-responsive design
+- Live preview in sandboxed iframe
+- Copy-to-clipboard functionality
+- Rating and download metrics
 
-### Analyzing the Bundle Size
+## 🔌 Strapi Integration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+The website is prepared for Strapi headless CMS integration:
 
-### Making a Progressive Web App
+```javascript
+// Example API call (src/services/strapiAPI.js)
+const response = await fetch(`${STRAPI_URL}/api/articles?populate=*`);
+const data = await response.json();
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+**Mock Data Fallback**: When Strapi is unavailable, the site shows comprehensive mock content.
 
-### Advanced Configuration
+## 🚀 Deployment Guide
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Vercel Deployment (Recommended)
 
-### Deployment
+1. Push your code to GitHub
+2. Connect repository to Vercel
+3. Configure build settings:
+   - Build Command: `npm run build`
+   - Output Directory: `build`
+4. Add environment variables for Strapi URL
+5. Deploy!
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Custom Domain Setup
 
-### `npm run build` fails to minify
+Add a `CNAME` file in the `/public` directory:
+```
+yourdomain.com
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Environment Variables
+
+Create `.env` file:
+```env
+REACT_APP_STRAPI_URL=https://your-strapi-instance.herokuapp.com
+REACT_APP_SITE_URL=https://yourdomain.com
+```
+
+## 📈 Future Enhancements
+
+- [ ] Set up Strapi CMS backend
+- [ ] Add blog commenting system
+- [ ] Implement search functionality
+- [ ] Add PWA capabilities
+- [ ] Performance monitoring integration
+- [ ] Multi-language support
+- [ ] Advanced analytics integration
+
+## 🔧 Development
+
+### Code Quality
+
+- ESLint configuration included
+- Responsive design testing recommended
+- Performance audits with Lighthouse
+
+### Browser Support
+
+- Chrome/Edge 88+
+- Firefox 85+
+- Safari 14+
+- Mobile browsers (iOS Safari, Chrome Mobile)
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 👤 Author
+
+**ZaZza402**
+- GitHub: [@ZaZza402](https://github.com/ZaZza402)
+- Website: [Coming Soon with Custom Domain]
+
+---
+
+**Built with ❤️ using React and modern web technologies**
