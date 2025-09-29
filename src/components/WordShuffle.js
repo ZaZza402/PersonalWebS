@@ -46,7 +46,7 @@ const WordShuffle = ({ words, duration = 2500, className }) => {
     };
     scramble(0);
     return () => clearTimeout(scrambleTimeout);
-  }, [index, words]);
+  }, [index, words, currentWord.length]);
 
   return (
     <div className={`word-shuffle-container ${className}`}>
