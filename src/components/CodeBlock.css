@@ -1,0 +1,129 @@
+/* CodeBlock Component Styles */
+.code-block {
+  position: relative;
+  margin: 20px 0;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.code-block-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: rgba(0, 0, 0, 0.7);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.code-block-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.code-block-language {
+  font-size: 0.8rem;
+  color: var(--accent-cyan);
+  font-weight: 500;
+  padding: 4px 8px;
+  background: rgba(0, 188, 212, 0.1);
+  border-radius: 4px;
+}
+
+.code-block-container {
+  position: relative;
+  max-height: 350px;
+  overflow-y: auto;
+}
+
+.copy-button {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0, 188, 212, 0.9);
+  border: none;
+  color: #ffffff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  z-index: 10;
+}
+
+.copy-button:hover {
+  background: rgba(0, 188, 212, 1);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 188, 212, 0.3);
+}
+
+.copy-button.copied {
+  background: rgba(76, 175, 80, 0.9);
+}
+
+.copy-button.copied:hover {
+  background: rgba(76, 175, 80, 1);
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+.copy-button i {
+  font-size: 0.9rem;
+}
+
+/* Empty state */
+.code-block-empty {
+  padding: 40px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Custom scrollbar for code blocks */
+.code-block-container pre::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.code-block-container pre::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.code-block-container pre::-webkit-scrollbar-thumb {
+  background: rgba(0, 188, 212, 0.5);
+  border-radius: 3px;
+}
+
+.code-block-container pre::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 188, 212, 0.7);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .code-block-header {
+    padding: 10px 12px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .copy-button {
+    top: 8px;
+    right: 8px;
+    padding: 5px 10px;
+    font-size: 0.75rem;
+  }
+  
+  .code-block-container pre {
+    font-size: 0.8rem !important;
+    padding: 0.8rem !important;
+  }
+}

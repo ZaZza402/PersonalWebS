@@ -1,0 +1,110 @@
+/* CSS Light Rays - Lightweight alternative to WebGL */
+.css-light-rays {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.ray {
+  position: absolute;
+  width: 2px;
+  height: 100vh;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    var(--ray-color, #00c6ff) 20%,
+    transparent 60%,
+    var(--ray-color, #00c6ff) 80%,
+    transparent 100%
+  );
+  opacity: 0.3;
+  animation: rayFloat 8s ease-in-out infinite;
+  filter: blur(1px);
+}
+
+.ray-1 {
+  left: 10%;
+  animation-delay: 0s;
+  animation-duration: 6s;
+}
+
+.ray-2 {
+  left: 25%;
+  animation-delay: 1s;
+  animation-duration: 8s;
+}
+
+.ray-3 {
+  left: 50%;
+  animation-delay: 2s;
+  animation-duration: 7s;
+}
+
+.ray-4 {
+  left: 75%;
+  animation-delay: 1.5s;
+  animation-duration: 9s;
+}
+
+.ray-5 {
+  left: 90%;
+  animation-delay: 0.5s;
+  animation-duration: 5s;
+}
+
+.gradient-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    ellipse at center top,
+    var(--light-color, #00c6ff) 0%,
+    transparent calc(var(--light-spread, 0.8) * 100%)
+  );
+  opacity: 0.1;
+  animation: gradientPulse 4s ease-in-out infinite alternate;
+}
+
+@keyframes rayFloat {
+  0%, 100% {
+    opacity: 0.2;
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: translateY(-20px) scale(1.1);
+  }
+}
+
+@keyframes gradientPulse {
+  0% {
+    opacity: 0.05;
+  }
+  100% {
+    opacity: 0.15;
+  }
+}
+
+/* Origin variations */
+.css-light-rays[data-origin="top-left"] .gradient-overlay {
+  background: radial-gradient(
+    ellipse at left top,
+    var(--light-color, #00c6ff) 0%,
+    transparent calc(var(--light-spread, 0.8) * 100%)
+  );
+}
+
+.css-light-rays[data-origin="top-right"] .gradient-overlay {
+  background: radial-gradient(
+    ellipse at right top,
+    var(--light-color, #00c6ff) 0%,
+    transparent calc(var(--light-spread, 0.8) * 100%)
+  );
+}
