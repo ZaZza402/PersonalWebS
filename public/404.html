@@ -41,14 +41,15 @@
     // the path segment in the query string with the path for this page
     (function(l) {
       if (l.pathname.length > 1 && l.pathname.lastIndexOf('/') === (l.pathname.length - 1)) {
-        // Handle trailing slash
+        // Handle trailing slash - redirect without trailing slash
         l.replace(l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
                   l.pathname.slice(0, -1) + l.search + l.hash);
-      } else {
-        // Redirect to index.html with the path as query parameter
-        var path = l.pathname + l.search + l.hash;
+      } else if (l.pathname !== '/') {
+        // Only redirect if we're not already on the home page
+        // Redirect to index.html with the full path (including leading slash) as query parameter
+        var redirectPath = l.pathname + l.search + l.hash;
         l.replace(l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') + 
-                  '/?p=' + path.slice(1).replace(/&/g, '~and~'));
+                  '/?p=' + encodeURIComponent(redirectPath).replace(/&/g, '~and~'));
       }
     }(window.location));
   </script>

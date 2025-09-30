@@ -21,8 +21,11 @@ function App() {
     // This runs once on app initialization to handle GitHub Pages routing
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('p')) {
-      const route = urlParams.get('p').replace(/~and~/g, '&');
-      window.history.replaceState(null, null, '/' + route);
+      const encodedRoute = urlParams.get('p');
+      // Decode the route and restore & characters
+      const route = decodeURIComponent(encodedRoute.replace(/~and~/g, '&'));
+      // Replace the current URL with the original route
+      window.history.replaceState(null, null, route);
     }
   }, []);
   
