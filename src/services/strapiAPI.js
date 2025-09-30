@@ -3,6 +3,7 @@ import axios from 'axios';
 // Strapi API configuration
 const API_BASE_URL = process.env.REACT_APP_STRAPI_URL || 'https://victorious-card-243d7ebfa0.strapiapp.com';
 const STRAPI_ENABLED = process.env.REACT_APP_STRAPI_ENABLED === 'true';
+const STRAPI_API_TOKEN = process.env.REACT_APP_STRAPI_API_TOKEN;
 
 // Create axios instance with default config
 const api = axios.create({
@@ -10,6 +11,7 @@ const api = axios.create({
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json',
+    ...(STRAPI_API_TOKEN && { 'Authorization': `Bearer ${STRAPI_API_TOKEN}` })
   },
 });
 
@@ -17,9 +19,16 @@ const api = axios.create({
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    // Only log non-network errors to reduce console spam
-    if (error.code !== 'ERR_NETWORK' && error.code !== 'ECONNREFUSED') {
-      console.warn('Strapi API Error:', error.response?.data || error.message);
+    // Log detailed error information for debugging
+    if (error.response) {
+      console.warn('Strapi API Error:', {
+        status: error.response.status,
+        statusText: error.response.statusText,
+        data: error.response.data,
+        url: error.config?.url
+      });
+    } else if (error.code !== 'ERR_NETWORK' && error.code !== 'ECONNREFUSED') {
+      console.warn('Strapi API Error:', error.message);
     }
     return Promise.reject(error);
   }
@@ -30,19 +39,43 @@ export const articlesAPI = {
   // Get all articles for blog index page
   getAll: async () => {
     if (!STRAPI_ENABLED) {
+      console.log('Strapi integration disabled - using fallback data');
       return null; // Use fallback data
     }
     
     try {
+      console.log('Fetching articles from:', `${API_BASE_URL}/api/articles?populate=featuredImage`);
+      console.log('Using authentication:', !!STRAPI_API_TOKEN);
+      
       const response = await api.get('/articles?populate=featuredImage');
+      console.log('Strapi API success:', response.data);
       return response.data;
     } catch (error) {
-      // Silently handle network errors - fallback will be used
-      if (error.code === 'ERR_NETWORK' || error.code === 'ECONNREFUSED') {
-        return null;
+      // Log detailed error information for debugging
+      if (error.response) {
+        console.error('Strapi API Error Details:', {
+          status: error.response.status,
+          statusText: error.response.statusText,
+          message: error.response.data?.error?.message || 'Unknown error',
+          details: error.response.data?.error?.details,
+          url: error.config?.url
+        });
+        
+        // Provide specific guidance based on error type
+        if (error.response.status === 403) {
+          console.error('🔒 STRAPI PERMISSION ERROR: The "articles" collection is not publicly accessible.');
+          console.error('💡 SOLUTION: Go to Strapi Admin → Settings → Users & Permissions Plugin → Roles → Public → Article → Enable "find" and "findOne" permissions');
+        } else if (error.response.status === 401) {
+          console.error('🔑 STRAPI AUTH ERROR: Invalid or missing API token.');
+          console.error('💡 SOLUTION: Check your REACT_APP_STRAPI_API_TOKEN in .env file or configure public permissions');
+        } else if (error.response.status === 404) {
+          console.error('📊 STRAPI COLLECTION ERROR: "articles" collection not found.');
+          console.error('💡 SOLUTION: Create an "articles" collection type in Strapi with fields: title, excerpt, content, category, slug, author, featuredImage');
+        }
       }
-      console.error('Error fetching articles:', error);
-      throw error;
+      
+      // Always return null for fallback data, don't throw
+      return null;
     }
   },
 

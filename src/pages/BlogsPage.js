@@ -115,9 +115,9 @@ const BlogsPage = () => {
       setLoading(true);
       
       try {
-        console.log('Attempting to fetch articles from Strapi...');
+        console.log('🚀 BlogsPage: Attempting to fetch articles from Strapi...');
         const strapiArticles = await articlesAPI.getAll();
-        console.log('Raw Strapi response:', strapiArticles);
+        console.log('📦 BlogsPage: Raw Strapi response:', strapiArticles);
         
         if (strapiArticles && strapiArticles.data && strapiArticles.data.length > 0) {
           console.log('Processing Strapi articles:', strapiArticles.data.length, 'items');
