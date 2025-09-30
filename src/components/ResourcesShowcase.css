@@ -306,13 +306,19 @@
 /* Responsive Design */
 @media (max-width: 768px) {
   .resources-showcase {
-    padding: 5rem 0;
+    padding: 4rem 0;
+  }
+
+  .resources-header {
+    margin-bottom: 3rem;
+    padding: 0 1rem;
   }
 
   .resources-grid {
     grid-template-columns: 1fr;
     gap: 2rem;
     min-width: 0;
+    margin: 0 1rem;
   }
 
   .resource-card {
@@ -321,7 +327,7 @@
   }
 
   .resources-header h2 {
-    font-size: 2.5rem;
+    font-size: clamp(2rem, 8vw, 2.5rem);
   }
 
   .resources-header .section-intro {
@@ -336,26 +342,75 @@
     width: 100%;
     justify-content: center;
   }
-}
 
-@media (max-width: 480px) {
-  .resources-showcase {
-    padding: 4rem 0;
+  .card-icon-wrapper {
+    width: 60px;
+    height: 60px;
+    font-size: 1.8rem;
   }
 
-  .resource-card {
-    padding: 1.5rem 1rem;
+  .card-badge {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .resources-grid {
+    margin: 0 0.5rem;
+    gap: 1.5rem;
+  }
+
+  .resources-header {
+    padding: 0 0.5rem;
+    margin-bottom: 2rem;
   }
 
   .card-header {
     flex-direction: column;
     align-items: flex-start;
     gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .resources-showcase {
+    padding: 3rem 0;
+  }
+
+  .resources-grid {
+    margin: 0;
+  }
+
+  .resource-card {
+    padding: 1.5rem 1rem;
+    margin: 0 0.5rem;
+  }
+
+  .resources-header h2 {
+    font-size: clamp(1.8rem, 8vw, 2.2rem);
+    letter-spacing: 1px;
   }
 
   .card-icon-wrapper {
-    width: 60px;
-    height: 60px;
-    font-size: 1.8rem;
+    width: 55px;
+    height: 55px;
+    font-size: 1.6rem;
+  }
+
+  .card-badge {
+    font-size: 0.7rem;
+    padding: 0.3rem 0.6rem;
+  }
+
+  .feature-item {
+    font-size: 0.9rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .card-button {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
   }
 }

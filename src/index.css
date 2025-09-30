@@ -1168,8 +1168,56 @@ section {
   }
 }
 
+/* Mobile and Tablet Responsive Improvements */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+  
+  .main-header {
+    padding: 0.8rem 1rem;
+  }
+  
+  section {
+    padding: 3rem 0;
+  }
+}
+
 /* Extra small screens */
 @media(max-width: 480px) {
+  .container {
+    padding: 0 0.75rem;
+  }
+  
+  .main-header {
+    padding: 0.6rem 0.75rem;
+  }
+  
+  section {
+    padding: 2.5rem 0;
+  }
+  
+  .service-card {
+    padding: 2rem 1.5rem;
+  }
+  
+  .card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .service-card h3 {
+    font-size: 1.3rem;
+  }
+  
+  .advantage-card {
+    padding: 2rem 1.5rem;
+  }
+  
+  .advantage-card i {
+    font-size: 2.5rem;
+  }
+  
   .hero {
     height: 100vh;
     min-height: 600px;

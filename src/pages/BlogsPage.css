@@ -426,7 +426,7 @@
 /* Responsive Design */
 @media (max-width: 768px) {
   .blogs-hero {
-    padding: 100px 0 60px;
+    padding: 110px 0 60px;
   }
   
   .hero-description {
@@ -470,6 +470,10 @@
 }
 
 @media (max-width: 480px) {
+  .blogs-hero {
+    padding: 90px 0 50px;
+  }
+
   .featured-section,
   .articles-section {
     padding: 40px 0;
