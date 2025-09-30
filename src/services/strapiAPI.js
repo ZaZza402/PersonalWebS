@@ -6,6 +6,15 @@ const STRAPI_API_TOKEN = process.env.REACT_APP_STRAPI_API_TOKEN;
 // Enable Strapi if we have a token, unless explicitly disabled
 const STRAPI_ENABLED = process.env.REACT_APP_STRAPI_ENABLED !== 'false' && !!STRAPI_API_TOKEN;
 
+// Debug logging for production troubleshooting
+console.log('🔧 Strapi Configuration Debug:', {
+  hasUrl: !!process.env.REACT_APP_STRAPI_URL,
+  hasToken: !!STRAPI_API_TOKEN,
+  tokenLength: STRAPI_API_TOKEN ? STRAPI_API_TOKEN.length : 0,
+  enabled: STRAPI_ENABLED,
+  baseUrl: API_BASE_URL
+});
+
 // Create axios instance with default config
 const api = axios.create({
   baseURL: `${API_BASE_URL}/api`,
