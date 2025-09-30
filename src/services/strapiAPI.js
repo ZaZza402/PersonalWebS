@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Strapi API configuration
-const API_BASE_URL = process.env.REACT_APP_STRAPI_URL || 'http://localhost:1337';
+const API_BASE_URL = process.env.REACT_APP_STRAPI_URL || 'https://victorious-card-243d7ebfa0.strapiapp.com';
 const STRAPI_ENABLED = process.env.REACT_APP_STRAPI_ENABLED === 'true';
 
 // Create axios instance with default config
