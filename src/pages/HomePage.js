@@ -9,6 +9,7 @@ import GlitchSubheadline from '../components/GlitchSubheadline';
 import WordShuffle from '../components/WordShuffle';
 import ModernBackground from '../components/ModernBackground';
 import PortfolioShowcase from '../components/PortfolioShowcase';
+import ResourcesShowcase from '../components/ResourcesShowcase';
 
 const buttonsContainerVariants = {
   hidden: {},
@@ -104,6 +105,8 @@ const HomePage = () => {
             </div>
         </div>
       </section>
+      
+      <ResourcesShowcase />
       
       <section id="showcase" className="showcase-section">
             <div className="container">
