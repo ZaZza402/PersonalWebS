@@ -16,18 +16,7 @@ function App() {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
   
-  // GitHub Pages SPA compatibility - handles redirect from 404.html
-  useEffect(() => {
-    // This runs once on app initialization to handle GitHub Pages routing
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('p')) {
-      const encodedRoute = urlParams.get('p');
-      // Decode the route and restore & characters
-      const route = decodeURIComponent(encodedRoute.replace(/~and~/g, '&'));
-      // Replace the current URL with the original route
-      window.history.replaceState(null, null, route);
-    }
-  }, []);
+  // Note: GitHub Pages SPA routing is now handled in index.html before React loads
   
   useEffect(() => {
     handleCloseMenu();
