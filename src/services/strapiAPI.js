@@ -2,8 +2,9 @@ import axios from 'axios';
 
 // Strapi API configuration
 const API_BASE_URL = process.env.REACT_APP_STRAPI_URL || 'https://victorious-card-243d7ebfa0.strapiapp.com';
-const STRAPI_ENABLED = process.env.REACT_APP_STRAPI_ENABLED === 'true';
 const STRAPI_API_TOKEN = process.env.REACT_APP_STRAPI_API_TOKEN;
+// Enable Strapi if we have a token, unless explicitly disabled
+const STRAPI_ENABLED = process.env.REACT_APP_STRAPI_ENABLED !== 'false' && !!STRAPI_API_TOKEN;
 
 // Create axios instance with default config
 const api = axios.create({
