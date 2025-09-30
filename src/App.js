@@ -10,6 +10,7 @@ import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import BlogsPage from './pages/BlogsPage';
 import ArticlePage from './pages/ArticlePage';
 import SnippetsPage from './pages/SnippetsPage';
+import NotFoundPage from './pages/NotFoundPage';
 
 function App() {
   const [isMenuOpen, setMenuOpen] = useState(false);
@@ -20,8 +21,8 @@ function App() {
     // This runs once on app initialization to handle GitHub Pages routing
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('p')) {
-      const route = urlParams.get('p');
-      window.history.replaceState(null, null, route + window.location.hash);
+      const route = urlParams.get('p').replace(/~and~/g, '&');
+      window.history.replaceState(null, null, '/' + route);
     }
   }, []);
   
@@ -55,6 +56,8 @@ function App() {
         <Route path="/ai-guides" element={<BlogsPage />} />
         <Route path="/ai-guides/:slug" element={<ArticlePage />} />
         <Route path="/case-studies" element={<SnippetsPage />} />
+        {/* 404 Catch-all route */}
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Layout>
   );
