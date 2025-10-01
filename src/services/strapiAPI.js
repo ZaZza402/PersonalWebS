@@ -1,45 +1,20 @@
 import axios from 'axios';
-import config, { envVars } from '../config';
+import config from '../config';
 
 // Strapi API configuration using config file
 const API_BASE_URL = config.strapi.url;
 const STRAPI_API_TOKEN = config.strapi.apiToken;
 
-// Debug logging using config
-console.log('🔧 Strapi API Debug (via config):', {
-  hasUrl: !!API_BASE_URL,
-  hasToken: !!STRAPI_API_TOKEN,
-  urlValue: API_BASE_URL,
-  tokenLength: STRAPI_API_TOKEN ? STRAPI_API_TOKEN.length : 0,
-  envVarsFromConfig: envVars
-});
-
-// Additional debug for environment variable reading
-console.log('🔧 Environment Variable Reading Test:', {
-  processEnv: typeof process.env,
-  hasProcessEnv: !!process.env,
-  strapiUrl: process.env.REACT_APP_STRAPI_URL,
-  strapiUrlType: typeof process.env.REACT_APP_STRAPI_URL,
-  tokenExists: !!process.env.REACT_APP_STRAPI_API_TOKEN,
-  tokenType: typeof process.env.REACT_APP_STRAPI_API_TOKEN,
-  allKeys: Object.keys(process.env).filter(k => k.startsWith('REACT_APP')).length
+// Strapi integration status
+console.log('🔧 Strapi Integration Status:', {
+  enabled: !!STRAPI_API_TOKEN,
+  url: API_BASE_URL
 });
 
 // Enable Strapi if we have a token, unless explicitly disabled
 const STRAPI_ENABLED = process.env.REACT_APP_STRAPI_ENABLED !== 'false' && !!STRAPI_API_TOKEN;
 
-// Debug logging for production troubleshooting
-console.log('🔧 Strapi Configuration Debug:', {
-  hasUrl: !!process.env.REACT_APP_STRAPI_URL,
-  rawUrl: process.env.REACT_APP_STRAPI_URL,
-  hasToken: !!STRAPI_API_TOKEN,
-  rawTokenStart: STRAPI_API_TOKEN ? STRAPI_API_TOKEN.substring(0, 10) + '...' : 'undefined',
-  tokenLength: STRAPI_API_TOKEN ? STRAPI_API_TOKEN.length : 0,
-  enabled: STRAPI_ENABLED,
-  baseUrl: API_BASE_URL,
-  enabledCheck: process.env.REACT_APP_STRAPI_ENABLED,
-  allEnvVars: Object.keys(process.env).filter(key => key.startsWith('REACT_APP_'))
-});
+
 
 // Create axios instance with default config
 const api = axios.create({

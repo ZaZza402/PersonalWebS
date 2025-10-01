@@ -10,7 +10,6 @@ import WordShuffle from '../components/WordShuffle';
 import ModernBackground from '../components/ModernBackground';
 import PortfolioShowcase from '../components/PortfolioShowcase';
 import ResourcesShowcase from '../components/ResourcesShowcase';
-import EnvTest from '../components/EnvTest';
 
 const buttonsContainerVariants = {
   hidden: {},
@@ -22,7 +21,6 @@ const HomePage = () => {
 
   return (
     <>
-      <EnvTest />
       <Helmet>
         <title>AxiomWeb | Il Motore della Tua Crescita</title>
         <meta name="description" content="AxiomWeb non realizza semplici siti web, ma veri e propri motori per acquisire clienti. Siamo specializzati nella creazione di esperienze digitali di grande impatto visivo e ad alte prestazioni." />
