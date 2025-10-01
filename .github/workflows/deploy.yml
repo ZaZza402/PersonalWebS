@@ -42,8 +42,6 @@ jobs:
         run: |
           echo "REACT_APP_STRAPI_URL is set: ${{ secrets.REACT_APP_STRAPI_URL != '' }}"
           echo "REACT_APP_STRAPI_API_TOKEN is set: ${{ secrets.REACT_APP_STRAPI_API_TOKEN != '' }}"
-          echo "URL length: ${{ length(secrets.REACT_APP_STRAPI_URL) }}"
-          echo "Token length: ${{ length(secrets.REACT_APP_STRAPI_API_TOKEN) }}"
 
       - name: Build application
         run: CI=false npm run build
