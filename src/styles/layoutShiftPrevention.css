@@ -1,0 +1,117 @@
+/* Layout Shift Prevention */
+
+/* Critical: Only disable problematic animations during initial load */
+/* EXCLUDE modals, overlays and interactive elements */
+body.page-loading .hero-section *:not(.modal-overlay):not(.modal-content):not([class*="modal"]),
+body.page-loading .process-timeline *:not(.modal-overlay):not(.modal-content):not([class*="modal"]),
+body.page-loading .tiltable-card *:not(.modal-overlay):not(.modal-content):not([class*="modal"]) {
+  animation-duration: 0s !important;
+  transition-duration: 0s !important;
+}
+
+/* Target specific Framer Motion elements that cause layout shifts */
+/* EXCLUDE modals and interactive elements */
+body.page-loading .hero-section [data-framer-motion]:not(.modal-overlay):not(.modal-content):not([class*="modal"]),
+body.page-loading .process-timeline [data-framer-motion]:not(.modal-overlay):not(.modal-content):not([class*="modal"]),
+body.page-loading .tiltable-card [data-framer-motion]:not(.modal-overlay):not(.modal-content):not([class*="modal"]) {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Don't override scroll behavior - let main CSS handle it */
+
+/* Ensure modals and overlays are never affected */
+.modal-overlay,
+.modal-content,
+[class*="modal"],
+.overlay {
+  animation: unset !important;
+  transition: unset !important;
+  transform: unset !important;
+  opacity: unset !important;
+}
+
+/* Minimal layout shift prevention - only for animated elements */
+.hero-section *:not(.modal-overlay):not(.modal-content):not([class*="modal"]),
+.process-timeline *:not(.modal-overlay):not(.modal-content):not([class*="modal"]),
+.tiltable-card *:not(.modal-overlay):not(.modal-content):not([class*="modal"]) {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+/* Ensure elements reserve their space even when animated */
+.motion-safe [data-motion] {
+  will-change: transform, opacity;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Page loading state */
+body.loading {
+  overflow: hidden;
+}
+
+body.loading * {
+  animation-play-state: paused !important;
+  transition-duration: 0ms !important;
+}
+
+/* Smooth scroll improvements */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Prevent scroll anchoring issues during animations */
+* {
+  overflow-anchor: none;
+}
+
+/* Ensure proper stacking context for animated elements */
+.motion-element {
+  position: relative;
+  z-index: auto;
+}
+
+/* Layout reserved space for animated elements */
+.animate-in-view {
+  min-height: 1px; /* Ensures element takes space even when opacity: 0 */
+}
+
+/* Prevent flash of unstyled content */
+.page-content {
+  visibility: hidden;
+}
+
+.page-loaded .page-content {
+  visibility: visible;
+}
+
+/* Smooth transitions for layout changes */
+.layout-transition {
+  transition: height 0.3s ease, min-height 0.3s ease;
+}
+
+/* GPU acceleration for smooth animations */
+.gpu-accelerated {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+/* Intersection Observer loading states */
+.intersection-loading {
+  opacity: 0.1;
+  transform: none; /* Don't transform during loading */
+}
+
+.intersection-loaded {
+  opacity: 1;
+  transition: opacity 0.4s ease;
+}

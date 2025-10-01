@@ -1,5 +1,6 @@
 /* --- CSS Variables and Initial Setup --- */
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&family=Oswald:wght@400;700&display=swap');
+@import './styles/layoutShiftPrevention.css';
 
 :root {
     --bg-primary: #0a0a0a;
@@ -147,25 +148,10 @@ section {
 
 /* --- CORRECTED Logo Styles for 3D Spin --- */
 
-/* The parent link needs perspective to create the 3D space */
+/* Logo link container */
 .logo-link {
     text-decoration: none;
-    perspective: 800px;
-    display: inline-block; /* Important for perspective to apply correctly */
-}
-
-/* The logo itself is what will be transformed in 3D */
-.logo {
-    font-family: var(--font-heading);
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    /* REMOVED the old 'animation: pulse-glow...' */
-    display: inline-flex; /* Helps with alignment */
-    align-items: center;
-    justify-content: center;
-    transform-style: preserve-3d; /* This enables the 3D transformation */
-    padding: 5px; /* Add a little padding for better hover area */
+    display: inline-block;
 }
 
 /* --- Header & Navigation --- */
@@ -185,18 +171,7 @@ section {
     border-bottom: 1px solid var(--border-color);
 }
 
-.logo {
-    font-family: var(--font-heading);
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    animation: pulse-glow 3s infinite ease-in-out;
-}
 
-@keyframes pulse-glow {
-    0%, 100% { text-shadow: 0 0 5px rgba(0, 188, 212, 0.4), 0 0 10px rgba(0, 188, 212, 0.3); }
-    50% { text-shadow: 0 0 10px rgba(0, 188, 212, 0.8), 0 0 20px rgba(0, 188, 212, 0.6); }
-}
 
 .menu-toggle {
     background: none;
@@ -452,7 +427,7 @@ section {
     perspective: 1500px;
     width: 100%;
     max-width: 100%;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .service-card-link {
@@ -471,7 +446,7 @@ section {
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .service-card:hover {
@@ -543,7 +518,7 @@ section {
     gap: 2rem;
     width: 100%;
     max-width: 100%;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .advantage-card {
@@ -761,48 +736,156 @@ section {
 
 .process-section {
     padding: 5rem 0;
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+}
+
+.process-section .section-intro {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 4rem;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    line-height: 1.8;
 }
 
 .process-timeline {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 3rem;
     position: relative;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 .process-step {
-    text-align: center;
-    padding: 1.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+}
+
+.process-step::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    background: var(--accent-gradient);
+    border-radius: 16px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.process-step:hover::before {
+    opacity: 0.1;
 }
 
 .process-icon {
-    width: 70px;
-    height: 70px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
     background: var(--bg-card);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 1.5rem;
-    border: 2px solid rgba(255, 255, 255, 0.1);
+    border: 3px solid rgba(0, 188, 212, 0.2);
+    flex-shrink: 0;
+    position: relative;
+}
+
+.process-icon::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    background: var(--accent-gradient);
+    border-radius: 50%;
+    z-index: -1;
+    opacity: 0.5;
 }
 
 .process-icon i {
     font-size: 2.5rem;
-    background: var(--accent-gradient);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--accent-cyan);
 }
 
-.process-step h3 {
+.process-content {
+    flex: 1;
+}
+
+.process-content h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+    color: var(--text-primary);
+}
+
+.process-timeline-badge {
+    display: inline-block;
+    background: rgba(0, 188, 212, 0.1);
+    color: var(--accent-cyan);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(0, 188, 212, 0.2);
+}
+
+.process-content p {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.process-deliverable {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 3px solid var(--accent-cyan);
+    font-size: 0.9rem;
+}
+
+.process-deliverable strong {
+    color: var(--text-primary);
+    display: block;
     margin-bottom: 0.5rem;
 }
 
-.process-step p {
+.process-guarantee {
+    margin-top: 4rem;
+    text-align: center;
+}
+
+.guarantee-content {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    background: rgba(0, 188, 212, 0.05);
+    padding: 1.5rem 2rem;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 188, 212, 0.2);
+    max-width: 600px;
+}
+
+.guarantee-content i {
+    font-size: 2.5rem;
+    color: var(--accent-cyan);
+}
+
+.guarantee-content h4 {
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.guarantee-content p {
     color: var(--text-secondary);
-    max-width: 300px;
-    margin: 0 auto;
+    margin: 0;
+    text-align: left;
 }
 
 /* --- Showcase Page Styles --- */
@@ -845,7 +928,7 @@ section {
 .portfolio-card {
     position: relative;
     display: block;
-    overflow: hidden;
+    overflow: visible;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.2), 0 15px 30px rgba(0,0,0,0.25);
     transition: transform 0.3s ease-in-out;

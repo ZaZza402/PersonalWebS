@@ -48,24 +48,24 @@ const ServicesPage = () => {
             <h3>Cosa Include il Pacchetto:</h3>
             <ul className="features-list">
               <li><i className='bx bx-check-shield'></i> <strong>Sito Web Vetrina Professionale:</strong> Un design moderno e pulito che racconta la tua storia.</li>
-              <li><i className='bx bx-check-shield'></i> <strong>Design Responsive e Mobile-First:</strong> Perfetta visualizzazione su smartphone, tablet e desktop.</li>
-              <li><i className='bx bx-check-shield'></i> <strong>Ottimizzazione SEO di Base:</strong> Struttura e contenuti ottimizzati per essere trovati più facilmente su Google.</li>
+              <li><i className='bx bx-check-shield'></i> <strong>Perfetto su Telefone, Tablet e Computer:</strong> Perfetta visualizzazione su smartphone, tablet e desktop.</li>
+              <li><i className='bx bx-check-shield'></i> <strong>I Tuoi Clienti Ti Trovano su Google:</strong> Struttura e contenuti ottimizzati per essere trovati più facilmente su Google.</li>
               <li><i className='bx bx-check-shield'></i> <strong>Integrazione Contatti Rapidi:</strong> Pulsanti WhatsApp, email e social per una comunicazione immediata.</li>
-              <li><i className='bx bx-check-shield'></i> <strong>Performance Elevate:</strong> Un sito veloce e reattivo per una migliore esperienza utente.</li>
+              <li><i className='bx bx-check-shield'></i> <strong>Caricamento Ultra-Veloce:</strong> Un sito veloce e reattivo per una migliore esperienza dei visitatori.</li>
             </ul>
           </ParallaxCard>
 
           <ParallaxCard imageSrc="/images/crescita.png" imageAlt="Illustrazione Motore di Crescita" reverse={true}>
             <h2>MOTORE DI CRESCITA</h2>
             <p><strong>Ideale per:</strong> attività consolidate che vogliono superare la concorrenza, dominare la ricerca locale e trasformare il proprio sito in un vero e proprio strumento di acquisizione clienti.</p>
-            <p>Andiamo oltre il design. Questo pacchetto trasforma il tuo sito in un asset strategico che lavora attivamente per te. Attraverso analisi avanzate e ottimizzazione continua, creiamo un percorso che porta i visitatori di Google a diventare tuoi clienti.</p>
+            <p>Andiamo oltre il design. Questo pacchetto trasforma il tuo sito in un asset strategico che lavora attivamente per te. Attraverso analisi avanzate e miglioramenti continui, creiamo un percorso che porta i visitatori di Google a diventare tuoi clienti.</p>
             <h3>Cosa Include il Pacchetto:</h3>
             <ul className="features-list">
               <li><i className='bx bx-check-double'></i> <strong>Tutto del pacchetto Fondamenta, e in più:</strong></li>
-              <li><i className='bx bx-check-double'></i> <strong>SEO Locale Avanzato:</strong> Ottimizzazione mirata per Google Maps e per le ricerche nella tua area geografica.</li>
-              <li><i className='bx bx-check-double'></i> <strong>Analisi dei Competitor con IA:</strong> Un report dettagliato per capire i punti di forza e di debolezza dei tuoi concorrenti online.</li>
-              <li><i className='bx bx-check-double'></i> <strong>Strategia dei Contenuti:</strong> Revisione e ottimizzazione dei tuoi testi per massimizzare la visibilità sui motori di ricerca.</li>
-              <li><i className='bx bx-check-double'></i> <strong>Installazione di Google Analytics:</strong> Per monitorare il traffico e capire il comportamento dei tuoi visitatori.</li>
+              <li><i className='bx bx-check-double'></i> <strong>Primi su Google nella Tua Zona:</strong> Configurazione mirata per Google Maps e per le ricerche nella tua area geografica.</li>
+              <li><i className='bx bx-check-double'></i> <strong>Studiamo la Concorrenza per Te:</strong> Un report dettagliato per capire i punti di forza e di debolezza dei tuoi concorrenti online.</li>
+              <li><i className='bx bx-check-double'></i> <strong>Strategia dei Contenuti:</strong> Revisione e miglioramento dei tuoi testi per massimizzare la visibilità sui motori di ricerca.</li>
+              <li><i className='bx bx-check-double'></i> <strong>Monitoriamo Chi Visita il Tuo Sito:</strong> Per monitorare il traffico e capire il comportamento dei tuoi visitatori.</li>
             </ul>
           </ParallaxCard>
         </div>
@@ -103,38 +103,79 @@ const ServicesPage = () => {
         </div>
       </section>
 
-      {/* --- CORRECTED AND ANIMATED PROCESS TIMELINE --- */}
+      {/* --- DETAILED PROCESS TIMELINE WITH TIMELINES --- */}
       <section className="process-section">
         <div className="container">
-          <h2>Il Nostro Processo Collaborativo</h2>
+          <h2>Il Nostro Processo Passo per Passo</h2>
+          <p className="section-intro">
+            Lavoriamo in modo strutturato per garantirti risultati di qualità nei tempi stabiliti. 
+            Ecco esattamente cosa aspettarti dal momento del primo contatto alla consegna finale.
+          </p>
           <motion.div 
             className="process-timeline"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
-            transition={{ staggerChildren: 0.2 }} // This controls the delay between each step
+            transition={{ staggerChildren: 0.2 }}
           >
             <motion.div className="process-step" variants={processStepVariant}>
               <div className="process-icon"><i className='bx bx-conversation'></i></div>
-              <h3>1. Contatto e Consulenza</h3>
-              <p>Tutto inizia con una conversazione. Ascoltiamo le tue idee, analizziamo le tue necessità e definiamo insieme gli obiettivi del progetto.</p>
+              <div className="process-content">
+                <h3>1. Scoperta e Strategia</h3>
+                <div className="process-timeline-badge">📅 1-2 giorni</div>
+                <p>Analizziamo insieme la tua attività, i tuoi obiettivi e il mercato di riferimento. Definiamo la strategia digitale più efficace per raggiungere i tuoi clienti ideali.</p>
+                <div className="process-deliverable">
+                  <strong>Cosa ricevi:</strong> Strategia personalizzata • Analisi competitor • Piano del progetto
+                </div>
+              </div>
             </motion.div>
+            
             <motion.div className="process-step" variants={processStepVariant}>
-              <div className="process-icon"><i className='bx bx-paint-roll'></i></div>
-              <h3>2. Proposta e Demo Iniziale</h3>
-              <p>Sulla base della nostra chiacchierata, prepariamo una proposta dettagliata e una prima demo visiva per darti un'idea concreta del risultato finale.</p>
+              <div className="process-icon"><i className='bx bx-palette'></i></div>
+              <div className="process-content">
+                <h3>2. Design e Prototipo</h3>
+                <div className="process-timeline-badge">📅 3-5 giorni</div>
+                <p>Creiamo il design del tuo sito basandoci sui tuoi gusti e sui bisogni dei tuoi clienti. Ti mostriamo esattamente come apparirà prima di iniziare la costruzione.</p>
+                <div className="process-deliverable">
+                  <strong>Cosa ricevi:</strong> Design personalizzato • Prototipo interattivo • 1 revisione inclusa
+                </div>
+              </div>
             </motion.div>
+            
             <motion.div className="process-step" variants={processStepVariant}>
-              <div className="process-icon"><i className='bx bx-wrench'></i></div>
-              <h3>3. Sviluppo e Revisione</h3>
-              <p>È la fase di costruzione vera e propria. Lavoriamo a stretto contatto con te, con cicli di revisione per implementare i tuoi feedback.</p>
+              <div className="process-icon"><i className='bx bx-code-block'></i></div>
+              <div className="process-content">
+                <h3>3. Sviluppo e Costruzione</h3>
+                <div className="process-timeline-badge">📅 1-3 settimane</div>
+                <p>Trasformiamo il design in un sito web funzionante. Ti teniamo aggiornato sui progressi e implementiamo tutte le funzionalità concordate.</p>
+                <div className="process-deliverable">
+                  <strong>Cosa ricevi:</strong> Sito completo • Test su tutti i dispositivi • Configurazione hosting
+                </div>
+              </div>
             </motion.div>
+            
             <motion.div className="process-step" variants={processStepVariant}>
               <div className="process-icon"><i className='bx bx-rocket'></i></div>
-              <h3>4. Lancio e Consegna</h3>
-              <p>Una volta approvato il progetto finale, mettiamo il sito online e ti forniamo tutti gli accessi e le istruzioni per una gestione autonoma.</p>
+              <div className="process-content">
+                <h3>4. Lancio e Formazione</h3>
+                <div className="process-timeline-badge">📅 1-2 giorni</div>
+                <p>Mettiamo online il tuo sito e ti insegniamo come gestirlo autonomamente. Ti forniamo tutti gli accessi e le guide necessarie.</p>
+                <div className="process-deliverable">
+                  <strong>Cosa ricevi:</strong> Sito online • Formazione personalizzata • Supporto 30 giorni
+                </div>
+              </div>
             </motion.div>
           </motion.div>
+          
+          <div className="process-guarantee">
+            <div className="guarantee-content">
+              <i className='bx bx-shield-check'></i>
+              <div>
+                <h4>Garanzia di Tempistiche</h4>
+                <p>Rispettiamo sempre i tempi concordati. Se dovessimo superare i tempi per causa nostra, ricevi un bonus extra sul progetto.</p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

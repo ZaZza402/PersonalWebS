@@ -16,6 +16,7 @@
   overflow-x: hidden;
   overscroll-behavior: contain;
   touch-action: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .website-builder-modal {
@@ -869,13 +870,15 @@
   .website-builder-overlay {
     padding: 0.5rem;
     align-items: flex-start;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 3rem;
+    min-height: 100vh;
   }
 
   .website-builder-modal {
     height: auto;
     min-height: auto;
+    max-height: none;
     border-radius: 16px;
     max-width: none;
     width: calc(100% - 1rem);
@@ -921,21 +924,21 @@
     min-height: auto;
   }
   
-  /* Reduce minimum heights on mobile */
+  /* Remove minimum heights on mobile - let content expand naturally */
   .website-type-selector {
-    min-height: 500px;
+    min-height: auto;
   }
   
   .feature-selector {
-    min-height: 600px;
+    min-height: auto;
   }
   
   .description-step {
-    min-height: 350px;
+    min-height: auto;
   }
   
   .requirements-generator {
-    min-height: 500px;
+    min-height: auto;
   }
 
   .website-types-grid {
@@ -1036,12 +1039,15 @@
   .website-builder-overlay {
     padding: 0.125rem;
     padding-top: 0.5rem;
+    padding-bottom: 2rem;
     align-items: flex-start;
+    min-height: 100vh;
   }
 
   .website-builder-modal {
-    max-height: 100vh;
-    min-height: 95vh;
+    max-height: none;
+    min-height: auto;
+    height: auto;
     width: calc(100% - 0.25rem);
     border-radius: 8px;
   }

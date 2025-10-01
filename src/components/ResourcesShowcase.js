@@ -74,11 +74,10 @@ const ResourcesShowcase = () => {
             whileHover="hover"
           >
             <motion.div className="card-content" variants={hoverVariants}>
-              <div className="card-header">
-                <div className="card-icon-wrapper">
-                  <i className='bx bx-book-content'></i>
-                </div>
-                <div className="card-badge">BLOG</div>
+              <div className="card-badge">BLOG</div>
+              
+              <div className="card-icon-wrapper">
+                <i className='bx bx-book-content'></i>
               </div>
               
               <h3>Articoli e Guide</h3>
@@ -119,11 +118,10 @@ const ResourcesShowcase = () => {
             whileHover="hover"
           >
             <motion.div className="card-content" variants={hoverVariants}>
-              <div className="card-header">
-                <div className="card-icon-wrapper">
-                  <i className='bx bx-code-curly'></i>
-                </div>
-                <div className="card-badge">SNIPPETS</div>
+              <div className="card-badge">SNIPPETS</div>
+              
+              <div className="card-icon-wrapper">
+                <i className='bx bx-code-curly'></i>
               </div>
               
               <h3>Codice Pronto all'Uso</h3>

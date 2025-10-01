@@ -58,7 +58,9 @@
   max-width: 1000px;
   margin: 0 auto;
   width: 100%;
-  overflow: hidden;
+  overflow: visible;
+  justify-items: center;
+  padding: 0 2rem;
 }
 
 .resource-card {
@@ -99,11 +101,20 @@
   flex-direction: column;
 }
 
-.card-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 2rem;
+.card-badge {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: rgba(0, 188, 212, 0.2);
+  color: var(--accent-cyan);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border: 1px solid var(--accent-cyan);
+  white-space: nowrap;
+  z-index: 3;
 }
 
 .card-icon-wrapper {
@@ -117,6 +128,7 @@
   font-size: 2rem;
   color: white;
   box-shadow: 0 10px 30px rgba(0, 188, 212, 0.3);
+  margin: 2rem auto 2rem auto;
 }
 
 .blog-card .card-icon-wrapper {
@@ -128,16 +140,7 @@
   box-shadow: 0 10px 30px rgba(0, 230, 118, 0.3);
 }
 
-.card-badge {
-  background: rgba(0, 188, 212, 0.2);
-  color: var(--accent-cyan);
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  border: 1px solid var(--accent-cyan);
-}
+
 
 .snippets-card .card-badge {
   background: rgba(0, 230, 118, 0.2);
@@ -399,11 +402,14 @@
     width: 55px;
     height: 55px;
     font-size: 1.6rem;
+    margin: 1.5rem auto 1.5rem auto;
   }
 
   .card-badge {
     font-size: 0.7rem;
     padding: 0.3rem 0.6rem;
+    top: 1rem;
+    right: 1rem;
   }
 
   .feature-item {

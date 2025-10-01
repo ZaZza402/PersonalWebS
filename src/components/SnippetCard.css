@@ -109,6 +109,8 @@
   flex-direction: column;
   gap: 12px;
   min-width: 140px;
+  max-width: 160px;
+  flex-shrink: 0;
 }
 
 .preview-btn,
@@ -127,6 +129,11 @@
   font-size: 0.9rem;
   text-decoration: none;
   border: none;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .preview-btn {

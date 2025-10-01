@@ -9,11 +9,14 @@ const PortfolioShowcase = () => {
       id: 1,
       title: "Clean Service Srl",
       category: "Servizi Professionali",
-      description: "Piattaforma digitale che ha aumentato le prenotazioni del 250%",
-      tech: ["React", "Node.js", "Booking System"],
+      description: "Piattaforma digitale completa per la gestione di servizi di pulizia professionale. Sistema integrato di prenotazioni, gestione clienti e fatturazione che ha trasformato completamente il business aziendale.",
+      tech: ["React", "Node.js", "Booking System", "CRM", "Payment Gateway"],
       image: "/images/service-pulizia.png",
       stats: { bookings: "+250%", clients: "+180%" },
-      color: "rgba(0, 198, 255, 0.8)"
+      color: "rgba(0, 198, 255, 0.8)",
+      features: ["Sistema prenotazioni online", "Dashboard amministrativa", "App mobile per operatori", "Fatturazione automatica"],
+      duration: "4 mesi",
+      client: "Clean Service Srl"
     },
     {
       id: 2,
@@ -119,11 +122,37 @@ const PortfolioShowcase = () => {
               <h4>{project.title}</h4>
               <p>{project.description}</p>
               
+              {/* Additional content for featured card */}
+              {project.id === 1 && project.features && (
+                <div className="project-features">
+                  <h5>Funzionalità Principali:</h5>
+                  <ul>
+                    {project.features.map((feature, index) => (
+                      <li key={index}>{feature}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              
               <div className="project-tech">
                 {project.tech.map((tech, index) => (
                   <span key={index} className="tech-tag">{tech}</span>
                 ))}
               </div>
+              
+              {/* Project timeline for featured card */}
+              {project.id === 1 && project.duration && (
+                <div className="project-meta">
+                  <div className="meta-item">
+                    <span className="meta-label">Durata:</span>
+                    <span className="meta-value">{project.duration}</span>
+                  </div>
+                  <div className="meta-item">
+                    <span className="meta-label">Cliente:</span>
+                    <span className="meta-value">{project.client}</span>
+                  </div>
+                </div>
+              )}
               
               <div className="project-stats">
                 {Object.entries(project.stats).map(([key, value], index) => (

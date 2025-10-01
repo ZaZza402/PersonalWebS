@@ -3,13 +3,14 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import TiltableCard from '../components/TiltableCard';
-import ProcessCard from '../components/ProcessCard';
+import ProcessTimeline from '../components/ProcessTimeline';
 import ContactButton from '../components/ContactButton';
-import GlitchSubheadline from '../components/GlitchSubheadline';
-import WordShuffle from '../components/WordShuffle';
 import ModernBackground from '../components/ModernBackground';
-import PortfolioShowcase from '../components/PortfolioShowcase';
+import ParticleField from '../components/ParticleField';
+import TestimonialsSection from '../components/TestimonialsSection';
+import PricingSection from '../components/PricingSection';
 import ResourcesShowcase from '../components/ResourcesShowcase';
+import '../components/BusinessImpactHero.css';
 
 const buttonsContainerVariants = {
   hidden: {},
@@ -17,8 +18,6 @@ const buttonsContainerVariants = {
 };
 
 const HomePage = () => {
-  const subheadlineText = "Affianchiamo le aziende del territorio per trasformare un semplice sito in un potente strumento che attira e converte clienti da Google - e non solo.";
-
   return (
     <>
       <Helmet>
@@ -37,39 +36,201 @@ const HomePage = () => {
         `}</script>
       </Helmet>
 
-      <section id="home" className="hero">
-        {/* Modern animated background */}
-        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1, backgroundColor: 'var(--bg-primary)' }}>
+      <section id="home" className="business-impact-hero">
+        {/* Sophisticated animated background */}
+        <div className="hero-background">
           <ModernBackground />
+          <ParticleField />
+          <div className="hero-gradient-overlay"></div>
         </div>
         
-        <div className="hero-layout-wrapper">
-          <div className="hero-main-content">
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
+        <div className="hero-container">
+          {/* Main Value Proposition */}
+          <div className="hero-main-section">
+            <motion.div 
+              className="hero-value-proposition"
+              initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
             >
-              IL TUO SITO PUÒ ESSERE
-              <span className="hero-highlight"> DI PIÙ</span>
-              <br />
-              <span className="hero-secondary-text">MERITA UN</span>{" "}
-              <WordShuffle 
-                words={["SUCCESSO.", "IMPATTO.", "RISULTATO."]}
-                className="typed-text"
-                duration={2000}
-              />
-            </motion.h1>
-            <div className="hero-bottom-content">
-              <GlitchSubheadline text={subheadlineText} />
-            </div>
-          </div>          <motion.div 
-            className="hero-scroll-down-btn"
-            initial={{ opacity: 0, y: 20 }}
+              <div className="hero-pricing-anchor">
+                <motion.span 
+                  className="price-tag"
+                  initial={{ scale: 0, rotate: -10 }}
+                  animate={{ scale: 1, rotate: 0 }}
+                  transition={{ duration: 0.6, delay: 0.3, type: "spring", stiffness: 200 }}
+                >
+                  Da €150
+                </motion.span>
+                <motion.div 
+                  className="arrow-transform"
+                  initial={{ scale: 0, x: -20 }}
+                  animate={{ scale: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.6 }}
+                >
+                  →
+                </motion.div>
+                <motion.span 
+                  className="result-text"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 0.8 }}
+                >
+                  PIÙ CLIENTI OGNI MESE
+                </motion.span>
+              </div>
+              
+              <motion.h1 
+                className="hero-main-title"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 1 }}
+              >
+                SITI WEB CHE <span className="highlight-gradient">PORTANO CLIENTI</span>
+                <br />
+                NON SOLO VISITE
+              </motion.h1>
+              
+              <motion.p 
+                className="hero-promise"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 1.3 }}
+              >
+                Il tuo investimento più intelligente: trasformiamo la tua presenza online 
+                in un <strong>motore di acquisizione clienti</strong> che lavora 24/7 per te.
+              </motion.p>
+            </motion.div>
+
+            {/* Interactive Preview Section */}
+            <motion.div 
+              className="hero-interactive-preview"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 1.6 }}
+            >
+              <div className="preview-cards">
+                <motion.div 
+                  className="preview-card"
+                  whileHover={{ scale: 1.05, y: -10 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <div className="card-icon">📱</div>
+                  <h4>Presenza Professionale</h4>
+                  <p>Clienti ti trovano su Google</p>
+                  <div className="card-timeline">2-3 settimane</div>
+                </motion.div>
+                
+                <motion.div 
+                  className="preview-card"
+                  whileHover={{ scale: 1.05, y: -10 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <div className="card-icon">🎯</div>
+                  <h4>Sistema Prenotazioni</h4>
+                  <p>Appuntamenti automatici</p>
+                  <div className="card-timeline">3-4 settimane</div>
+                </motion.div>
+                
+                <motion.div 
+                  className="preview-card"
+                  whileHover={{ scale: 1.05, y: -10 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <div className="card-icon">🛒</div>
+                  <h4>E-commerce Completo</h4>
+                  <p>Vendite online 24/7</p>
+                  <div className="card-timeline">4-6 settimane</div>
+                </motion.div>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Trust Indicators */}
+          <motion.div 
+            className="hero-trust-indicators"
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 2.5 }}
+            transition={{ duration: 0.6, delay: 1.8 }}
           >
-            <a href="#services" className="btn btn-primary">SCOPRI COME</a>
+            <div className="trust-badges">
+              <div className="trust-badge">
+                <i className="bx bx-shield-check"></i>
+                <span>Garanzia Tempi</span>
+              </div>
+              <div className="trust-badge">
+                <i className="bx bx-money"></i>
+                <span>Prezzi Trasparenti</span>
+              </div>
+              <div className="trust-badge">
+                <i className="bx bx-map-pin"></i>
+                <span>20+ Aziende Locali</span>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Dual CTAs */}
+          <motion.div 
+            className="hero-cta-section"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 2 }}
+          >
+            <div className="cta-buttons">
+              <motion.button 
+                className="cta-primary"
+                whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(0, 188, 212, 0.3)" }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => document.getElementById('website-builder')?.scrollIntoView({ behavior: 'smooth' })}
+              >
+                <span>Scopri il Tuo Prezzo</span>
+                <small>Configuratore 2 min</small>
+              </motion.button>
+              
+              <motion.a 
+                href="#testimonials"
+                className="cta-secondary"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <span>Vedi Risultati Reali</span>
+                <small>Testimonianze clienti</small>
+              </motion.a>
+            </div>
+          </motion.div>
+
+          {/* Before/After Results */}
+          <motion.div 
+            className="hero-results-proof"
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 2.3 }}
+          >
+            <div className="results-container">
+              <div className="result-item">
+                <div className="before-after">
+                  <span className="before">PRIMA: 0 clienti online</span>
+                  <span className="after">DOPO: +15 clienti/mese</span>
+                </div>
+                <div className="business-type">Ristorante • €150</div>
+              </div>
+              
+              <div className="result-item">
+                <div className="before-after">
+                  <span className="before">PRIMA: Solo passaparola</span>
+                  <span className="after">DOPO: Prenotazioni automatiche</span>
+                </div>
+                <div className="business-type">Barbiere • €450</div>
+              </div>
+              
+              <div className="result-item">
+                <div className="before-after">
+                  <span className="before">PRIMA: Vendite locali</span>
+                  <span className="after">DOPO: Vendite in tutta Italia</span>
+                </div>
+                <div className="business-type">Artigiano • €850</div>
+              </div>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -85,21 +246,21 @@ const HomePage = () => {
                     <h3>LE FONDAMENTA DIGITALI</h3>
                     <p>Realizziamo siti web ultra-veloci e di grande impatto visivo, che costituiscono le solide fondamenta della tua presenza digitale. È qui che la storia del tuo brand prende vita.</p>
                     <ul className="service-features">
-                        <li>✅ Sito Web Vetrina di Grande Impatto</li>
-                        <li>✅ Design Responsive e Mobile-First</li>
-                        <li>✅ SEO On-Page di Base</li>
-                        <li>✅ Integrazione WhatsApp & Email</li>
+                        <li>✅ Sito Web che Colpisce al Primo Sguardo</li>
+                        <li>✅ Perfetto su Telefono, Tablet e Computer</li>
+                        <li>✅ I Tuoi Clienti Ti Trovano su Google</li>
+                        <li>✅ Contatti Diretti WhatsApp & Email</li>
                     </ul>
                 </TiltableCard>
                 <TiltableCard linkTo="/services">
                     <i className='bx bxs-rocket card-icon'></i>
                     <h3>MOTORE DI CRESCITA</h3>
-                    <p>Un ottimo sito web è solo l'inizio. Lo trasformiamo in una macchina genera-contatti attraverso SEO, strategia dei contenuti e ottimizzazione delle conversioni, per alimentare la crescita della tua attività.</p>
+                    <p>Un ottimo sito web è solo l'inizio. Lo trasformiamo in una macchina che ti porta nuovi clienti ogni giorno, facendoti trovare facilmente su Google e convincendo i visitatori a contattarti.</p>
                     <ul className="service-features">
                         <li>✅ Tutto il pacchetto FONDAMENTA, IN PIÙ:</li>
-                        <li>✅ SEO Locale Avanzato & Schema</li>
-                        <li>✅ Analisi dei Competitor con IA</li>
-                        <li>✅ Raccomandazioni sui Contenuti Strategici</li>
+                        <li>✅ Primi su Google nella Tua Zona</li>
+                        <li>✅ Studiamo la Concorrenza per Te</li>
+                        <li>✅ Strategie per Attrarre Più Clienti</li>
                     </ul>
                 </TiltableCard>
             </div>
@@ -108,34 +269,15 @@ const HomePage = () => {
       
       <ResourcesShowcase />
       
-      <section id="showcase" className="showcase-section">
-            <div className="container">
-                <PortfolioShowcase />
-            </div>
+      <section id="pricing" className="pricing-section">
+                <PricingSection />
+        </section>
+      
+      <section id="testimonials" className="testimonials-section">
+                <TestimonialsSection />
         </section>
         
-        <section id="advantage" className="advantage-section">
-            <div className="container">
-                <h2>IL NOSTRO PROCESSO IN 3 FASI VERSO IL SUCCESSO</h2>
-                <div className="advantage-grid">
-                    <ProcessCard index={0}>
-                        <i className='bx bx-search-alt'></i>
-                        <h3>SCOPERTA E STRATEGIA</h3>
-                        <p>Partiamo da un'analisi approfondita della tua attività, del tuo pubblico di riferimento e dei tuoi obiettivi. Utilizziamo strumenti moderni per analizzare il mercato e identificare le migliori opportunità di crescita.</p>
-                    </ProcessCard>
-                    <ProcessCard index={1}>
-                        <i className='bx bx-code-alt'></i>
-                        <h3>DESIGN E SVILUPPO</h3>
-                        <p>Successivamente, realizziamo un sito web ad alte prestazioni con un unico obiettivo: convertire i visitatori in clienti. Non si tratta solo di design, ma di un vero e proprio asset strategico per la tua attività.</p>
-                    </ProcessCard>
-                    <ProcessCard index={2}>
-                        <i className='bx bxs-analyse'></i>
-                        <h3>LANCIO E CRESCITA</h3>
-                        <p>La nostra collaborazione non termina con il lancio. Forniamo dati e analisi per monitorare i progressi e possiamo affiancarti con strategie SEO e di contenuto continuative, per garantirti risultati concreti e duraturi.</p>
-                    </ProcessCard>
-                </div>
-            </div>
-        </section>
+        <ProcessTimeline variant="compact" />
 
         <section id="contact" className="contact-section">
             <div className="container">

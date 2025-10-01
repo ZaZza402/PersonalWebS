@@ -36,7 +36,7 @@ const OffCanvasMenu = ({ isOpen, onCloseMenu }) => {
             {isSubmenuOpen && (
               <ul className="submenu" style={{ maxHeight: '200px' }}> {/* Style override to ensure it's visible */}
                 <li><NavLink to="/blog" onClick={handleLinkClick}>Blog</NavLink></li>
-                <li><NavLink to="/snippets" onClick={handleLinkClick}>Snippets</NavLink></li>
+                <li><NavLink to="/snippets" onClick={handleLinkClick}>Per Sviluppatori</NavLink></li>
               </ul>
             )}
           </li>

@@ -1,0 +1,118 @@
+/* Animated Logo Styles */
+.animated-logo-container {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+}
+
+.logo-content {
+  display: flex;
+  align-items: center;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Roboto Mono', 'Monaco', 'Cascadia Code', 'Courier New', monospace;
+  font-size: 1.8rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  position: relative;
+}
+
+/* Individual character styling */
+.logo-bracket {
+  color: var(--accent-cyan);
+  font-weight: 700;
+  text-shadow: 
+    0 0 10px rgba(0, 188, 212, 0.5),
+    0 0 20px rgba(0, 188, 212, 0.3),
+    0 0 30px rgba(0, 188, 212, 0.1);
+  transform-origin: center;
+  display: inline-block;
+}
+
+.logo-backslash {
+  color: var(--text-secondary);
+  font-weight: 500;
+  margin: 0 1px;
+  display: inline-block;
+  transform-origin: center;
+  transition: color 0.3s ease;
+}
+
+.logo-letters {
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+  margin: 0 1px;
+  display: inline-block;
+  transform-origin: center;
+  position: relative;
+}
+
+.logo-letters::after {
+  content: 'AW';
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: linear-gradient(45deg, rgba(0, 188, 212, 0.1), rgba(156, 39, 176, 0.1));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  z-index: -1;
+  filter: blur(8px);
+  opacity: 0.6;
+}
+
+/* Hover effects */
+.animated-logo-container:hover .logo-backslash {
+  color: var(--accent-cyan);
+  text-shadow: 0 0 8px rgba(0, 188, 212, 0.4);
+}
+
+.animated-logo-container:hover .logo-bracket {
+  text-shadow: 
+    0 0 15px rgba(0, 188, 212, 0.8),
+    0 0 30px rgba(0, 188, 212, 0.5),
+    0 0 45px rgba(0, 188, 212, 0.2);
+}
+
+.animated-logo-container:hover .logo-letters::after {
+  opacity: 1;
+  filter: blur(4px);
+}
+
+/* Subtle pulse effect for the entire logo */
+.animated-logo-container::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  background: radial-gradient(ellipse at center, 
+    rgba(0, 188, 212, 0.1) 0%, 
+    transparent 70%);
+  border-radius: 8px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.animated-logo-container:hover::before {
+  opacity: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .logo-content {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-content {
+    font-size: 1.3rem;
+  }
+}
