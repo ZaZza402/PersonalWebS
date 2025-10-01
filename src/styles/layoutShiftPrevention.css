@@ -1,21 +1,42 @@
 /* Layout Shift Prevention */
 
-/* Critical: Only disable problematic animations during initial load */
-/* EXCLUDE modals, overlays and interactive elements */
-body.page-loading .hero-section *:not(.modal-overlay):not(.modal-content):not([class*="modal"]),
-body.page-loading .process-timeline *:not(.modal-overlay):not(.modal-content):not([class*="modal"]),
-body.page-loading .tiltable-card *:not(.modal-overlay):not(.modal-content):not([class*="modal"]) {
-  animation-duration: 0s !important;
-  transition-duration: 0s !important;
+/* Mobile-specific layout shift prevention during page load */
+@media (max-width: 768px) {
+  body.mobile-loading *:not(.modal-overlay):not(.modal-content):not([class*="modal"]):not(.overlay) {
+    animation-duration: 0s !important;
+    transition-duration: 0s !important;
+  }
+
+  body.mobile-loading [data-framer-motion]:not(.modal-overlay):not(.modal-content):not([class*="modal"]):not(.overlay) {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* Prevent problematic Y transforms on mobile during load */
+  body.mobile-loading .business-impact-hero *,
+  body.mobile-loading .testimonials-section *,
+  body.mobile-loading .pricing-section *,
+  body.mobile-loading .process-timeline-section *,
+  body.mobile-loading .resources-showcase * {
+    transform: none !important;
+    opacity: 1 !important;
+  }
 }
 
-/* Target specific Framer Motion elements that cause layout shifts */
-/* EXCLUDE modals and interactive elements */
-body.page-loading .hero-section [data-framer-motion]:not(.modal-overlay):not(.modal-content):not([class*="modal"]),
-body.page-loading .process-timeline [data-framer-motion]:not(.modal-overlay):not(.modal-content):not([class*="modal"]),
-body.page-loading .tiltable-card [data-framer-motion]:not(.modal-overlay):not(.modal-content):not([class*="modal"]) {
-  opacity: 1 !important;
-  transform: none !important;
+/* Touchscreen device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  /* Reserve space for animated elements to prevent layout shift */
+  .motion-div,
+  [data-framer-motion] {
+    min-height: 1px;
+  }
+  
+  /* Reduce aggressive transforms on touch devices */
+  .preview-card,
+  .testimonial-card,
+  .pricing-card {
+    transform: none !important;
+  }
 }
 
 /* Don't override scroll behavior - let main CSS handle it */
@@ -114,4 +135,65 @@ html {
 .intersection-loaded {
   opacity: 1;
   transition: opacity 0.4s ease;
+}
+
+/* Mobile-specific improvements */
+@media (max-width: 768px) {
+  /* Reduce motion intensity on mobile */
+  .motion-reduce-mobile {
+    animation-duration: 0.2s !important;
+    transition-duration: 0.2s !important;
+  }
+  
+  /* Prevent iOS Safari bounce scrolling during animations */
+  body.mobile-loading {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  /* Ensure smooth scrolling after load */
+  body:not(.mobile-loading) {
+    position: static;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  
+  /* Optimize for mobile performance */
+  .hero-section,
+  .business-impact-hero {
+    will-change: auto;
+    contain: layout style;
+  }
+}
+
+/* Specific fixes for problematic components */
+@media (max-width: 768px) {
+  /* BusinessImpactHero mobile loading fixes */
+  body.mobile-loading .hero-pricing-anchor:not(.modal-overlay):not(.modal-content),
+  body.mobile-loading .preview-cards:not(.modal-overlay):not(.modal-content),
+  body.mobile-loading .hero-cta-section:not(.modal-overlay):not(.modal-content) {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+  
+  /* TestimonialsSection mobile loading fixes */
+  body.mobile-loading .testimonial-card:not(.modal-overlay):not(.modal-content) {
+    opacity: 1 !important;
+    transform: translateY(0) scale(1) !important;
+  }
+  
+  /* PricingSection mobile loading fixes */
+  body.mobile-loading .pricing-card:not(.modal-overlay):not(.modal-content) {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+  
+  /* Ensure critical sections load smoothly on mobile */
+  body.mobile-loading .resources-showcase .resource-card:not(.modal-overlay):not(.modal-content),
+  body.mobile-loading .process-timeline .process-step:not(.modal-overlay):not(.modal-content) {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
 }

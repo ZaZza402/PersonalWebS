@@ -1,8 +1,10 @@
 // Simple page load manager to prevent layout shifts
 export class PageLoadManager {
   static init() {
-    // TEMPORARILY DISABLED - Add loading class immediately
-    // document.body.classList.add('page-loading');
+    // Enhanced layout shift prevention for mobile/slow devices
+    if (this.shouldPreventLayoutShift()) {
+      document.body.classList.add('page-loading', 'mobile-loading');
+    }
     
     // Remove loading class after page is ready
     if (document.readyState === 'loading') {
@@ -14,10 +16,35 @@ export class PageLoadManager {
   }
   
   static handlePageReady = () => {
-    // TEMPORARILY DISABLED - Wait just enough for React to render critical elements
-    // setTimeout(() => {
-    //   document.body.classList.remove('page-loading');
-    // }, 200); // Shorter delay to prevent interference with interactions
+    // Wait for React to render critical elements - enhanced detection
+    if (this.shouldPreventLayoutShift()) {
+      const delay = this.isMobileDevice() ? 300 : 200;
+      setTimeout(() => {
+        document.body.classList.remove('page-loading', 'mobile-loading');
+      }, delay);
+    }
+  }
+
+  static isMobileDevice() {
+    // Check for mobile device using multiple indicators
+    return (
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+      window.innerWidth <= 768 ||
+      ('ontouchstart' in window) ||
+      (window.DeviceMotionEvent !== undefined)
+    );
+  }
+
+  // Enhanced mobile detection with viewport considerations
+  static shouldPreventLayoutShift() {
+    const isMobile = this.isMobileDevice();
+    const isSlowDevice = navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4;
+    const isSlowConnection = navigator.connection && 
+      (navigator.connection.effectiveType === 'slow-2g' || 
+       navigator.connection.effectiveType === '2g' || 
+       navigator.connection.effectiveType === '3g');
+    
+    return isMobile || isSlowDevice || isSlowConnection;
   }
 }
 
