@@ -1,20 +1,36 @@
 import axios from 'axios';
 
-// Log all environment variables for debugging (only in development)
-if (process.env.NODE_ENV === 'development') {
-  console.log('🔧 All REACT_APP environment variables:', 
-    Object.entries(process.env)
-      .filter(([key]) => key.startsWith('REACT_APP_'))
-      .reduce((obj, [key, value]) => ({
-        ...obj,
-        [key]: key.includes('TOKEN') ? (value ? value.substring(0, 10) + '...' : 'undefined') : value
-      }), {})
-  );
-}
+// Log all environment variables for debugging (in all environments for now)
+console.log('🔧 Build Time Check - All REACT_APP environment variables:', 
+  Object.entries(process.env)
+    .filter(([key]) => key.startsWith('REACT_APP_'))
+    .reduce((obj, [key, value]) => ({
+      ...obj,
+      [key]: key.includes('TOKEN') ? (value ? value.substring(0, 10) + '...' : 'undefined') : value
+    }), {})
+);
+
+console.log('🔧 Raw Environment Variable Check:', {
+  NODE_ENV: process.env.NODE_ENV,
+  REACT_APP_STRAPI_URL: process.env.REACT_APP_STRAPI_URL ? 'SET' : 'NOT SET',
+  REACT_APP_STRAPI_API_TOKEN: process.env.REACT_APP_STRAPI_API_TOKEN ? 'SET' : 'NOT SET'
+});
 
 // Strapi API configuration
 const API_BASE_URL = process.env.REACT_APP_STRAPI_URL || 'https://victorious-card-243d7ebfa0.strapiapp.com';
 const STRAPI_API_TOKEN = process.env.REACT_APP_STRAPI_API_TOKEN;
+
+// Additional debug for environment variable reading
+console.log('🔧 Environment Variable Reading Test:', {
+  processEnv: typeof process.env,
+  hasProcessEnv: !!process.env,
+  strapiUrl: process.env.REACT_APP_STRAPI_URL,
+  strapiUrlType: typeof process.env.REACT_APP_STRAPI_URL,
+  tokenExists: !!process.env.REACT_APP_STRAPI_API_TOKEN,
+  tokenType: typeof process.env.REACT_APP_STRAPI_API_TOKEN,
+  allKeys: Object.keys(process.env).filter(k => k.startsWith('REACT_APP')).length
+});
+
 // Enable Strapi if we have a token, unless explicitly disabled
 const STRAPI_ENABLED = process.env.REACT_APP_STRAPI_ENABLED !== 'false' && !!STRAPI_API_TOKEN;
 
