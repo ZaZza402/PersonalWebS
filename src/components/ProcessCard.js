@@ -27,6 +27,11 @@ const ProcessCard = ({ children, index }) => {
       viewport={{ once: true, amount: 0.5 }} // Trigger the animation once
       custom={index}         // Pass the index to the 'visible' variant for the delay
       whileHover={{ scale: 1.05, y: -10 }} // The "lift" effect on hover
+      style={{
+        transformOrigin: 'center center',
+        backfaceVisibility: 'hidden',
+        overflow: 'visible'
+      }}
     >
       {children}
     </motion.div>

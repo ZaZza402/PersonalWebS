@@ -8,13 +8,14 @@
   background: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(10px);
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   z-index: 10000;
-  padding: 2rem;
+  padding: 1rem;
+  overflow-y: auto;
+  overflow-x: hidden;
   overscroll-behavior: contain;
-  touch-action: none;
-  -webkit-overflow-scrolling: touch;
+  touch-action: auto;
 }
 
 .website-builder-modal {
@@ -22,20 +23,17 @@
   border-radius: 24px;
   width: 100%;
   max-width: 1400px;
-  height: fit-content;
-  max-height: 90vh;
-  min-height: 500px;
+  height: auto;
+  max-height: none;
+  min-height: auto;
   border: 1px solid var(--border-color);
   backdrop-filter: blur(20px);
   position: relative;
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: visible;
   scroll-behavior: smooth;
-  overscroll-behavior: contain;
-  touch-action: auto;
-  contain: layout style;
+  margin: 2rem auto;
 }
 
 /* Modal Header */
@@ -131,12 +129,17 @@
   padding: 1.5rem 2rem;
   flex: 1;
   overflow: visible;
-  min-height: 0; /* Allow flexbox to shrink */
+  min-height: auto;
   position: relative;
   z-index: 1;
 }
 
 /* Website Type Selector */
+.website-type-selector {
+  margin-bottom: 3rem;
+  min-height: 600px;
+}
+
 .website-type-selector .selector-header {
   text-align: center;
   margin-bottom: 2rem;
@@ -160,7 +163,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
   width: 100%;
   overflow: visible;
 }
@@ -245,6 +248,7 @@
   gap: 1rem;
   width: 100%;
   overflow: visible;
+  margin-bottom: 3rem;
 }
 
 .structure-card {
@@ -301,6 +305,10 @@
 }
 
 /* Feature Selector */
+.feature-selector {
+  min-height: 700px;
+}
+
 .feature-selector .selector-header {
   text-align: center;
   margin-bottom: 2rem;
@@ -476,6 +484,7 @@
   gap: 0.75rem;
   width: 100%;
   overflow: visible;
+  margin-bottom: 3rem;
 }
 
 .budget-card,
@@ -589,6 +598,11 @@
   background-clip: text;
 }
 
+.requirements-generator {
+  min-height: 600px;
+  padding: 2rem 0;
+}
+
 .requirements-preview {
   margin-bottom: 2rem;
   text-align: left;
@@ -604,7 +618,8 @@
   border: 1px solid var(--border-color);
   border-radius: 12px;
   padding: 1.5rem;
-  max-height: 300px;
+  min-height: 250px;
+  max-height: 400px;
   overflow-y: auto;
 }
 
@@ -787,6 +802,49 @@
   cursor: not-allowed;
 }
 
+/* Description Step */
+.description-step {
+  min-height: 400px;
+  padding: 2rem 0;
+}
+
+.description-step h3 {
+  font-size: 1.8rem;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.description-step p {
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.description-step textarea {
+  width: 100%;
+  min-height: 200px;
+  padding: 1.5rem;
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-family: inherit;
+  resize: vertical;
+  transition: border-color 0.3s ease;
+}
+
+.description-step textarea:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+}
+
+.description-step textarea::placeholder {
+  color: var(--text-muted);
+}
+
 /* Tablet Design */
 @media (max-width: 1024px) {
   .website-builder-modal {
@@ -809,18 +867,19 @@
 /* Mobile Design */
 @media (max-width: 768px) {
   .website-builder-overlay {
-    padding: 0.25rem;
+    padding: 0.5rem;
     align-items: flex-start;
-    padding-top: 1rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
   }
 
   .website-builder-modal {
-    max-height: 100vh;
-    height: fit-content;
-    min-height: 90vh;
+    height: auto;
+    min-height: auto;
     border-radius: 16px;
     max-width: none;
-    width: calc(100% - 0.5rem);
+    width: calc(100% - 1rem);
+    margin: 0 auto;
   }
 
   .modal-header {
@@ -860,6 +919,23 @@
   .modal-content {
     padding: 1.5rem 1rem;
     min-height: auto;
+  }
+  
+  /* Reduce minimum heights on mobile */
+  .website-type-selector {
+    min-height: 500px;
+  }
+  
+  .feature-selector {
+    min-height: 600px;
+  }
+  
+  .description-step {
+    min-height: 350px;
+  }
+  
+  .requirements-generator {
+    min-height: 500px;
   }
 
   .website-types-grid {
