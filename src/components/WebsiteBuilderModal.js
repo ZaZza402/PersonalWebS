@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import WebsiteTypeSelector from './WebsiteTypeSelector';
 import FeatureSelector from './FeatureSelector';
@@ -15,6 +15,48 @@ const WebsiteBuilderModal = ({ isOpen, onClose }) => {
     timeline: null,
     description: ''
   });
+
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (isOpen) {
+      // Save current scroll position
+      const scrollY = window.scrollY;
+      
+      // Lock body scroll with multiple methods for better mobile support
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = '100%';
+      document.documentElement.style.overflow = 'hidden';
+      
+      // Return function to restore scroll position
+      return () => {
+        document.body.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+        document.documentElement.style.overflow = '';
+        window.scrollTo(0, scrollY);
+      };
+    }
+  }, [isOpen]);
+
+  // Handle keyboard events (Escape to close)
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape' && isOpen) {
+        onClose();
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener('keydown', handleKeyDown);
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOpen, onClose]);
 
   const steps = [
     { id: 1, title: 'Tipo di Sito', subtitle: 'Che tipo di sito web ti serve?' },
@@ -83,6 +125,7 @@ const WebsiteBuilderModal = ({ isOpen, onClose }) => {
           animate="visible"
           exit="exit"
           onClick={onClose}
+          onTouchMove={(e) => e.preventDefault()}
         >
           <motion.div
             className="website-builder-modal"

@@ -12,20 +12,29 @@
   justify-content: center;
   z-index: 10000;
   padding: 2rem;
+  overscroll-behavior: contain;
+  touch-action: none;
+  -webkit-overflow-scrolling: touch;
 }
 
 .website-builder-modal {
   background: var(--bg-card);
   border-radius: 24px;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1400px;
+  height: auto;
   max-height: 95vh;
+  min-height: auto;
   border: 1px solid var(--border-color);
   backdrop-filter: blur(20px);
   position: relative;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  overscroll-behavior: contain;
+  touch-action: auto;
 }
 
 /* Modal Header */
@@ -117,8 +126,8 @@
 .modal-content {
   padding: 1.5rem 2rem;
   flex: 1;
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: visible;
+  min-height: 0; /* Allow flexbox to shrink */
 }
 
 /* Website Type Selector */
@@ -143,9 +152,11 @@
 
 .website-types-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
   margin-bottom: 2rem;
+  width: 100%;
+  overflow: visible;
 }
 
 .website-type-card {
@@ -224,8 +235,10 @@
 
 .structures-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 1rem;
+  width: 100%;
+  overflow: visible;
 }
 
 .structure-card {
@@ -331,8 +344,10 @@
 
 .features-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 0.75rem;
+  width: 100%;
+  overflow: visible;
 }
 
 .feature-card {
@@ -447,8 +462,10 @@
 .budget-grid,
 .timeline-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 0.75rem;
+  width: 100%;
+  overflow: visible;
 }
 
 .budget-card,
@@ -758,15 +775,40 @@
   cursor: not-allowed;
 }
 
-/* Responsive Design */
+/* Tablet Design */
+@media (max-width: 1024px) {
+  .website-builder-modal {
+    max-width: 900px;
+  }
+
+  .website-types-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .structures-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile Design */
 @media (max-width: 768px) {
   .website-builder-overlay {
     padding: 0.5rem;
+    align-items: flex-start;
+    padding-top: 2rem;
   }
 
   .website-builder-modal {
     max-height: 98vh;
+    height: auto;
     border-radius: 16px;
+    max-width: none;
+    width: calc(100% - 1rem);
+    min-height: auto;
   }
 
   .modal-header {
@@ -774,13 +816,17 @@
   }
 
   .step-progress {
-    gap: 0.75rem;
+    gap: 0.5rem;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
   }
 
   .step {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    min-width: 80px;
+    flex-shrink: 0;
   }
 
   .step-number {
@@ -790,17 +836,17 @@
   }
 
   .step-info h4 {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     margin-bottom: 0.25rem;
+    white-space: nowrap;
   }
 
   .step-info p {
-    font-size: 0.7rem;
-    display: none; /* Hide subtitle on mobile for space */
+    display: none;
   }
 
   .modal-content {
-    padding: 1rem 1.5rem;
+    padding: 1rem;
   }
 
   .website-types-grid {
@@ -809,7 +855,7 @@
   }
 
   .website-type-card {
-    padding: 0.75rem;
+    padding: 0.75rem 0.5rem;
   }
 
   .type-icon {
@@ -820,25 +866,53 @@
   }
 
   .website-type-card h4 {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     margin-bottom: 0.25rem;
   }
 
   .website-type-card p {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
+    line-height: 1.3;
   }
 
   .structures-grid {
     grid-template-columns: 1fr;
   }
 
+  .structure-card {
+    padding: 1rem;
+  }
+
   .features-grid {
     grid-template-columns: 1fr;
+  }
+
+  .feature-card {
+    padding: 0.75rem;
+  }
+
+  .feature-icon {
+    width: 28px;
+    height: 28px;
+    font-size: 0.9rem;
+  }
+
+  .feature-info h5 {
+    font-size: 0.85rem;
+  }
+
+  .feature-info p {
+    font-size: 0.75rem;
   }
 
   .budget-grid,
   .timeline-grid {
     grid-template-columns: 1fr;
+  }
+
+  .budget-card,
+  .timeline-card {
+    padding: 1rem;
   }
 
   .action-buttons {
@@ -848,7 +922,7 @@
   }
 
   .modal-footer {
-    padding: 0.75rem 1.5rem 1rem;
+    padding: 0.75rem 1rem;
     flex-direction: column;
     gap: 0.75rem;
   }
@@ -860,10 +934,73 @@
   }
 
   .section-title {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 
   .category-subtitle {
+    font-size: 0.85rem;
+  }
+}
+
+/* Very small mobile screens */
+@media (max-width: 480px) {
+  .website-builder-overlay {
+    padding: 0.25rem;
+    padding-top: 1rem;
+  }
+
+  .website-builder-modal {
+    max-height: 97vh;
+    width: calc(100% - 0.5rem);
+  }
+
+  .modal-header {
+    padding: 0.75rem 1rem 0.5rem;
+  }
+
+  .step-progress {
+    gap: 0.25rem;
+  }
+
+  .step {
+    min-width: 60px;
+  }
+
+  .step-number {
+    width: 24px;
+    height: 24px;
+    font-size: 0.7rem;
+  }
+
+  .step-info h4 {
+    font-size: 0.65rem;
+  }
+
+  .modal-content {
+    padding: 0.75rem;
+  }
+
+  .website-types-grid {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .website-type-card {
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .type-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+
+  .website-type-card h4 {
     font-size: 0.9rem;
+  }
+
+  .website-type-card p {
+    font-size: 0.8rem;
   }
 }

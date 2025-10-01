@@ -42,6 +42,19 @@ body {
     overflow-x: hidden;
     max-width: 100vw;
     position: relative;
+    /* Prevent scrollbars during animations */
+    overscroll-behavior-x: none;
+}
+
+/* Prevent scrollbars from appearing during animations */
+* {
+    /* Prevent content from causing horizontal overflow during animations */
+    will-change: auto;
+}
+
+/* Ensure framer-motion animations don't cause overflow */
+[data-framer-component] {
+    overflow: visible;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -85,14 +98,14 @@ ul {
     padding: 0 1.5rem;
     width: 100%;
     box-sizing: border-box;
-    overflow-x: hidden;
+    overflow: visible;
 }
 
 section {
     padding: 5rem 0;
     width: 100%;
     max-width: 100vw;
-    overflow-x: hidden;
+    overflow: visible;
     box-sizing: border-box;
 }
 
