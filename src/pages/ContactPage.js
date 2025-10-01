@@ -1,10 +1,10 @@
 // src/pages/ContactPage.js
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
-import emailjs from '@emailjs/browser';
 import MagneticChannelCard from '../components/MagneticChannelCard';
 import AnimatedTimeline from '../components/AnimatedTimeline';
+import WebsiteBuilderModal from '../components/WebsiteBuilderModal';
 
 const timelineItems = [
     { title: '1. Primo Contatto', text: 'Analizzeremo insieme la tua richiesta per capire a fondo le tue necessità e gli obiettivi del progetto.', icon: 'bx bx-message-square-dots', align: 'left' },
@@ -18,35 +18,7 @@ const fadeUp = {
 };
 
 const ContactPage = () => {
-  const form = useRef();
-  const [formState, setFormState] = useState('idle'); // 'idle', 'sending', 'success', 'error'
-  const [formMessage, setFormMessage] = useState('');
-
-  const sendEmail = (e) => {
-    e.preventDefault();
-    setFormState('sending');
-
-    emailjs
-      .sendForm(
-        process.env.REACT_APP_EMAILJS_SERVICE_ID,
-        process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
-        form.current,
-        process.env.REACT_APP_EMAILJS_PUBLIC_KEY
-      )
-      .then(
-        (result) => {
-          console.log('SUCCESS!', result.text);
-          setFormState('success');
-          setFormMessage('Messaggio inviato con successo! Ti risponderemo al più presto.');
-          form.current.reset();
-        },
-        (error) => {
-          console.log('FAILED...', error.text);
-          setFormState('error');
-          setFormMessage('Oops! C\'è stato un errore. Assicurati che tutti i campi siano compilati e riprova.');
-        }
-      );
-  };
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const title = "Entriamo in Contatto";
   let charCounter = 0;
@@ -126,58 +98,46 @@ const ContactPage = () => {
         </div>
       </section>
       
-      <section className="contact-form-section">
+      <section className="website-builder-section">
         <div className="container">
-          <h2>Oppure, Lascia un Messaggio</h2>
-          {/* --- THIS IS THE CORRECTED FORM TAG --- */}
-          <motion.form 
-            ref={form}
-            onSubmit={sendEmail}
-            // The old "action" and "method" attributes for Formspree have been removed.
-            className="contact-form"
+          <motion.div 
+            className="builder-intro"
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ staggerChildren: 0.15 }}
+            viewport={{ once: true, amount: 0.3 }}
+            variants={fadeUp}
           >
-            <motion.div className="form-group" variants={fadeUp}>
-              <label htmlFor="name">Il Tuo Nome</label>
-              <input type="text" id="name" name="name" required />
-            </motion.div>
-            <motion.div className="form-group" variants={fadeUp}>
-              <label htmlFor="email">La Tua Email</label>
-              <input type="email" id="email" name="email" required />
-            </motion.div>
-            <motion.div className="form-group" variants={fadeUp}>
-              <label htmlFor="message">Il Tuo Messaggio</label>
-              <textarea id="message" name="message" rows="6" required></textarea>
-            </motion.div>
-            <motion.div variants={fadeUp}>
-                <motion.button 
-                  type="submit" 
-                  className="btn btn-primary" 
-                  whileHover={{ scale: 1.05 }} 
-                  whileTap={{ scale: 0.95 }}
-                  disabled={formState === 'sending'}
-                >
-                  {formState === 'sending' ? 'Inviando...' : 'Invia il Messaggio'}
-                </motion.button>
-            </motion.div>
-
-            {formMessage && (
-              <motion.p
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                style={{
-                  marginTop: '1.5rem',
-                  color: formState === 'success' ? 'var(--accent-coral)' : '#ff5050',
-                  fontWeight: 'bold',
-                }}
-              >
-                {formMessage}
-              </motion.p>
-            )}
-          </motion.form>
+            <div className="builder-icon">
+              <i className="bx bx-palette"></i>
+            </div>
+            <h2>Non sai cosa ti serve?</h2>
+            <p>Utilizza il nostro configuratore interattivo per scoprire esattamente che tipo di sito web fa per te. Ti guideremo passo dopo passo!</p>
+            
+            <motion.button 
+              className="btn-website-builder"
+              onClick={() => setIsModalOpen(true)}
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <i className="bx bx-rocket"></i>
+              Configura il Tuo Sito Web
+            </motion.button>
+            
+            <div className="builder-features">
+              <div className="feature">
+                <i className="bx bx-check-circle"></i>
+                <span>Selezione guidata del tipo di sito</span>
+              </div>
+              <div className="feature">
+                <i className="bx bx-check-circle"></i>
+                <span>Preview delle strutture disponibili</span>
+              </div>
+              <div className="feature">
+                <i className="bx bx-check-circle"></i>
+                <span>Richiesta personalizzata automatica</span>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -187,6 +147,11 @@ const ContactPage = () => {
           <AnimatedTimeline items={timelineItems} />
         </div>
       </section>
+      
+      <WebsiteBuilderModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+      />
     </>
   );
 };
