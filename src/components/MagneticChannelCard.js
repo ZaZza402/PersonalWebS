@@ -37,13 +37,16 @@ const MagneticChannelCard = ({ children }) => {
       ref={ref}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      style={{ transform, transformStyle: 'preserve-3d' }}
+      style={{ 
+        transform, 
+        transformStyle: 'preserve-3d',
+        transformOrigin: 'center center',
+        backfaceVisibility: 'hidden',
+        willChange: 'transform'
+      }}
       className="channel-card-wrapper" // A wrapper for positioning
     >
-      {/* The content inside is moved on the Z-axis to create depth */}
-      <div style={{ transform: 'translateZ(50px)', transformStyle: 'preserve-3d' }}>
-        {children}
-      </div>
+      {children}
     </motion.div>
   );
 };

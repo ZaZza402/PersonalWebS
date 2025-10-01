@@ -924,17 +924,21 @@ section {
 }
 .channel-card-wrapper {
   perspective: 1000px;
+  border-radius: 8px;
+  overflow: visible;
 }
 .channel-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: box-shadow 0.3s ease;
   background-color: var(--bg-card);
   padding: 2.5rem;
   border-radius: 8px;
   text-align: center;
   border: 1px solid rgba(255, 255, 255, 0.1);
   display: block;
+  transform-origin: center center;
+  backface-visibility: hidden;
 }
-.channel-card-wrapper:hover .channel-card {
+.channel-card:hover {
   box-shadow: 0 0 30px 10px var(--shadow-glow-cyan);
 }
 .channel-card i {
