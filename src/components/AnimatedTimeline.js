@@ -22,7 +22,7 @@ const AnimatedTimeline = ({ items }) => {
             className="timeline-item"
             initial={{ opacity: 0, x: item.align === 'left' ? -50 : 50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.8 }}
+            viewport={{ once: true, amount: 0.2 }}
             transition={{ type: 'spring' }}
           >
             <div className="timeline-icon"><i className={item.icon}></i></div>

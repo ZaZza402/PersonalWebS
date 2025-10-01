@@ -92,7 +92,7 @@ const RequirementsGenerator = ({ selections, onClose }) => {
     
     text += `---\n`;
     text += `✨ Questa richiesta è stata generata tramite il configuratore di AxiomWeb\n`;
-    text += `📧 Email: info@axiomweb.eu\n`;
+    text += `📧 Email: axiomwebz@gmail.com\n`;
     text += `📱 WhatsApp: +39 069 442 8189\n`;
     text += `🌐 Website: www.axiomweb.eu`;
     
@@ -111,14 +111,14 @@ const RequirementsGenerator = ({ selections, onClose }) => {
 
   const openWhatsApp = () => {
     const text = encodeURIComponent(generateRequirementsText());
-    const whatsappUrl = `https://wa.me/393694428189?text=${text}`;
+    const whatsappUrl = `https://wa.me/390694428189?text=${text}`;
     window.open(whatsappUrl, '_blank');
   };
 
   const openEmail = () => {
     const subject = encodeURIComponent('Richiesta Nuovo Sito Web');
     const body = encodeURIComponent(generateRequirementsText());
-    const emailUrl = `mailto:info@axiomweb.eu?subject=${subject}&body=${body}`;
+    const emailUrl = `mailto:axiomwebz@gmail.com?subject=${subject}&body=${body}`;
     window.open(emailUrl);
   };
 

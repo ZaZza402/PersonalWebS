@@ -15,7 +15,7 @@ const GlowHoverCard = ({ children, direction = 'left' }) => {
         transition: { duration: 0.3 }
       }}
       transition={{ type: 'spring', stiffness: 100 }}
-      viewport={{ once: true, amount: 0.5 }}
+      viewport={{ once: true, amount: 0.2 }}
     >
       <div className="service-card">
         {children}

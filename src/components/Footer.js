@@ -25,8 +25,8 @@ const Footer = () => {
         </div>
         <div className="footer-social">
           <a href="https://www.facebook.com/AxiomWeb/" aria-label="Visita la nostra pagina Facebook" target="_blank" rel="noopener noreferrer"><i className='bx bxl-facebook-square'></i></a>
-          <a href="#!" aria-label="Visita il nostro profilo LinkedIn"><i className='bx bxl-linkedin-square'></i></a>
-          <a href="#!" aria-label="Visita la nostra pagina Instagram"><i className='bx bxl-instagram-alt'></i></a>
+          <a href="/contact" aria-label="Contattaci per LinkedIn"><i className='bx bxl-linkedin-square'></i></a>
+          <a href="/contact" aria-label="Contattaci per Instagram"><i className='bx bxl-instagram-alt'></i></a>
         </div>
         {/* The dynamic year is rendered here */}
         <div className="footer-copyright">© {year} AxiomWeb. Tutti i diritti riservati.</div>

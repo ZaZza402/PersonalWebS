@@ -18,7 +18,8 @@ export class PageLoadManager {
   static handlePageReady = () => {
     // Wait for React to render critical elements - enhanced detection
     if (this.shouldPreventLayoutShift()) {
-      const delay = this.isMobileDevice() ? 300 : 200;
+      // Increase delay for mobile to prevent layout shifts during complex animations
+      const delay = this.isMobileDevice() ? 400 : 200;
       setTimeout(() => {
         document.body.classList.remove('page-loading', 'mobile-loading');
       }, delay);

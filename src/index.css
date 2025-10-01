@@ -204,9 +204,9 @@ section {
     width: 85%;
     max-width: 320px;
     height: 100vh;
-    background: rgba(10, 10, 10, 0.95);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    background: rgba(10, 10, 10, 0.92);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     z-index: 1010;
     transform: translateX(100%);
     transition: transform 0.4s ease-in-out;
@@ -282,12 +282,29 @@ section {
     margin-top: auto;
     width: 80px;
     height: 80px;
-    border: 3px solid transparent;
     border-radius: 50%;
-    background: var(--accent-gradient);
     align-self: center;
-    padding: 4px;
-    box-sizing: border-box;
+    position: relative;
+}
+
+.menu-logo-placeholder::after {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    background: var(--accent-gradient);
+    border-radius: 50%;
+    z-index: -1;
+    filter: blur(10px);
+    opacity: 0.4;
+    animation: logoPulse 3s ease-in-out infinite;
+}
+
+@keyframes logoPulse {
+    0%, 100% { opacity: 0.4; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.05); }
 }
 
 .menu-logo-placeholder img {
@@ -298,13 +315,17 @@ section {
     display: block;
 }
 
+
+
 .overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     z-index: 999;
     opacity: 0;
     visibility: hidden;

@@ -95,10 +95,58 @@ html {
   overflow-anchor: none;
 }
 
+/* Enhanced scroll behavior to prevent animation interference */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 0;
+}
+
+body {
+  scroll-behavior: smooth;
+  overscroll-behavior: none;
+}
+
+/* Prevent scroll jacking from animations */
+@media (prefers-reduced-motion: no-preference) {
+  * {
+    scroll-margin-top: 0;
+    scroll-margin-bottom: 0;
+  }
+}
+
 /* Ensure proper stacking context for animated elements */
 .motion-element {
   position: relative;
   z-index: auto;
+}
+
+/* Prevent content from overlapping during scroll */
+section {
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+}
+
+/* Ensure main content areas maintain proper stacking */
+.hero, .business-impact-hero,
+.testimonials-section, .pricing-section,
+.resources-showcase, .process-timeline-section {
+  position: relative;
+  z-index: 2;
+  isolation: isolate;
+}
+
+/* Smooth scroll improvements for fast scrolling */
+body * {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Prevent momentum scrolling interruptions */
+@media screen and (max-width: 768px) {
+  body {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+  }
 }
 
 /* Layout reserved space for animated elements */
@@ -168,14 +216,51 @@ html {
   }
 }
 
+/* ELIMINATE INTERNAL CONTAINER SHIFTING - Fix content sliding within own boundaries */
+
+/* Key Fix: Prevent Y-axis movements that create internal gaps */
+section[id] {
+  contain: layout style paint;
+  transform: translateZ(0); 
+  isolation: isolate;
+}
+
+/* Force all animations to use ONLY opacity (no Y movement) to prevent internal shifting */
+section[id] motion\:div,
+section[id] [data-framer-component],
+.motion-div {
+  will-change: opacity !important;
+  contain: layout;
+  transform: translateZ(0);
+}
+
+/* Override Y-axis animations globally to prevent content sliding */
+motion\:div[style*="translateY"],
+[style*="translateY"] {
+  transform: translateY(0px) !important;
+}
+
+/* Fix container positioning for scroll offset calculations - MINIMAL APPROACH */
+.timeline-container {
+  position: relative;
+}
+
 /* Specific fixes for problematic components */
 @media (max-width: 768px) {
   /* BusinessImpactHero mobile loading fixes */
+  body.mobile-loading .hero-value-proposition:not(.modal-overlay):not(.modal-content),
   body.mobile-loading .hero-pricing-anchor:not(.modal-overlay):not(.modal-content),
   body.mobile-loading .preview-cards:not(.modal-overlay):not(.modal-content),
   body.mobile-loading .hero-cta-section:not(.modal-overlay):not(.modal-content) {
     opacity: 1 !important;
     transform: translateY(0) !important;
+  }
+  
+  /* Additional mobile loading fixes for staggered animations */
+  body.mobile-loading .hero-value-proposition *:not(.modal-overlay):not(.modal-content),
+  body.mobile-loading .hero-pricing-anchor *:not(.modal-overlay):not(.modal-content) {
+    opacity: 1 !important;
+    transform: translateY(0) translateX(0) scale(1) rotate(0deg) !important;
   }
   
   /* TestimonialsSection mobile loading fixes */

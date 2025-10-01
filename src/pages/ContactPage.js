@@ -73,7 +73,7 @@ const ContactPage = () => {
       <section className="contact-channels-section">
         <div className="container">
           <h2>Canali Diretti</h2>
-          <motion.div className="channels-grid" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.5 }} transition={{ staggerChildren: 0.2 }}>
+          <motion.div className="channels-grid" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} transition={{ staggerChildren: 0.2 }}>
             <motion.div variants={fadeUp}>
               <MagneticChannelCard>
                   <a href="https://wa.me/390694428189" target="_blank" rel="noopener noreferrer" className="channel-card">

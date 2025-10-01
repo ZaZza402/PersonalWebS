@@ -184,7 +184,7 @@ const TestimonialsSection = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
         >
           <p>Vuoi essere il prossimo caso di successo?</p>
-          <a href="#website-builder" className="cta-button">
+          <a href="/contact#website-builder" className="cta-button">
             <span>Inizia il Tuo Progetto</span>
             <i className='bx bx-right-arrow-alt'></i>
           </a>

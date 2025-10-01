@@ -28,13 +28,11 @@ const OffCanvasMenu = ({ isOpen, onCloseMenu }) => {
             onMouseEnter={() => setSubmenuOpen(true)}
             onMouseLeave={() => setSubmenuOpen(false)}
           >
-            {/* The # href prevents the link from navigating, it's just a toggle */}
             <a href="#!" className="nav-link" onClick={(e) => { e.preventDefault(); setSubmenuOpen(!isSubmenuOpen); }}>
               Approfondimenti <i className='bx bxs-chevron-down'></i>
             </a>
-            {/* We conditionally render the submenu based on its state */}
             {isSubmenuOpen && (
-              <ul className="submenu" style={{ maxHeight: '200px' }}> {/* Style override to ensure it's visible */}
+              <ul className="submenu" style={{ maxHeight: '200px' }}>
                 <li><NavLink to="/blog" onClick={handleLinkClick}>Blog</NavLink></li>
                 <li><NavLink to="/snippets" onClick={handleLinkClick}>Per Sviluppatori</NavLink></li>
               </ul>
@@ -46,7 +44,6 @@ const OffCanvasMenu = ({ isOpen, onCloseMenu }) => {
           <img src="/images/aw_logo.webp" alt="Logo AxiomWeb" />
         </div>
       </nav>
-      {/* The overlay is part of the menu system */}
       <div className={`overlay ${isOpen ? 'is-active' : ''}`} onClick={onCloseMenu}></div>
     </>
   );

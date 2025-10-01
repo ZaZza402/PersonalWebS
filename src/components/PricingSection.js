@@ -253,7 +253,7 @@ const PricingSection = () => {
                 </div>
 
                 <div className="package-footer">
-                  <a href="#website-builder" className="package-cta">
+                  <a href="/contact#website-builder" className="package-cta">
                     Scegli Questo Pacchetto
                   </a>
                 </div>
@@ -318,7 +318,7 @@ const PricingSection = () => {
             <div className="steps-list">
               <div className="step">
                 <span className="step-number">1</span>
-                <p>Compila il form per dirci le tue necessità</p>
+                <p>Contattaci via email o WhatsApp per le tue necessità</p>
               </div>
               <div className="step">
                 <span className="step-number">2</span>

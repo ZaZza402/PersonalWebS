@@ -177,15 +177,15 @@ const HomePage = () => {
             transition={{ duration: 0.6, delay: 2 }}
           >
             <div className="cta-buttons">
-              <motion.button 
+              <motion.a 
+                href="/contact#website-builder"
                 className="cta-primary"
                 whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(0, 188, 212, 0.3)" }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => document.getElementById('website-builder')?.scrollIntoView({ behavior: 'smooth' })}
               >
                 <span>Scopri il Tuo Prezzo</span>
                 <small>Configuratore 2 min</small>
-              </motion.button>
+              </motion.a>
               
               <motion.a 
                 href="#testimonials"
@@ -288,7 +288,7 @@ const HomePage = () => {
                   variants={buttonsContainerVariants}
                   initial="hidden"
                   whileInView="visible"
-                  viewport={{ once: true, amount: 0.8 }}
+                  viewport={{ once: true, amount: 0.2 }}
                 >
                     <ContactButton 
                       href="https://wa.me/390694428189" 
