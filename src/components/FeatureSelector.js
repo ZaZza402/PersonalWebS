@@ -172,37 +172,66 @@ const FeatureSelector = ({ selectedFeatures, budget, timeline, onFeaturesChange,
         <p>Seleziona le funzioni che vuoi nel tuo sito web</p>
       </div>
 
-      <div className="features-container">
-        {categories.map((category) => (
-          <div key={category} className="feature-category">
-            <h4 className="category-title">{category}</h4>
-            <div className="features-grid">
-              {features.filter(f => f.category === category).map((feature) => (
-                <motion.div
-                  key={feature.id}
-                  className={`feature-card ${selectedFeatures.includes(feature.id) ? 'selected' : ''} ${feature.essential ? 'essential' : ''}`}
-                  onClick={() => toggleFeature(feature.id)}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <div className="feature-icon">
-                    <i className={feature.icon}></i>
-                  </div>
-                  <div className="feature-info">
-                    <h5>
-                      {feature.name}
-                      {feature.essential && <span className="essential-badge">Essenziale</span>}
-                    </h5>
-                    <p>{feature.description}</p>
-                  </div>
-                  <div className="feature-checkbox">
-                    {selectedFeatures.includes(feature.id) && <i className="bx bx-check"></i>}
-                  </div>
-                </motion.div>
-              ))}
+      {/* Essential Features */}
+      <div className="essential-features-section">
+        <h4 className="section-title essential">🔥 Funzionalità Essenziali (Incluse)</h4>
+        <div className="features-grid essential-grid">
+          {features.filter(f => f.essential).map((feature) => (
+            <motion.div
+              key={feature.id}
+              className="feature-card essential selected"
+              whileHover={{ scale: 1.01 }}
+            >
+              <div className="feature-icon essential">
+                <i className={feature.icon}></i>
+              </div>
+              <div className="feature-info">
+                <h5>{feature.name}</h5>
+                <p>{feature.description}</p>
+              </div>
+              <div className="feature-checkbox">
+                <i className="bx bx-check"></i>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
+      {/* Optional Features by Category */}
+      <div className="optional-features-section">
+        <h4 className="section-title">⚡ Funzionalità Aggiuntive</h4>
+        {categories.filter(cat => features.some(f => f.category === cat && !f.essential)).map((category) => {
+          const categoryFeatures = features.filter(f => f.category === category && !f.essential);
+          if (categoryFeatures.length === 0) return null;
+          
+          return (
+            <div key={category} className="feature-category">
+              <h5 className="category-subtitle">{category}</h5>
+              <div className="features-grid">
+                {categoryFeatures.map((feature) => (
+                  <motion.div
+                    key={feature.id}
+                    className={`feature-card ${selectedFeatures.includes(feature.id) ? 'selected' : ''}`}
+                    onClick={() => toggleFeature(feature.id)}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <div className="feature-icon">
+                      <i className={feature.icon}></i>
+                    </div>
+                    <div className="feature-info">
+                      <h5>{feature.name}</h5>
+                      <p>{feature.description}</p>
+                    </div>
+                    <div className="feature-checkbox">
+                      {selectedFeatures.includes(feature.id) && <i className="bx bx-check"></i>}
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       {/* Budget Selection */}
